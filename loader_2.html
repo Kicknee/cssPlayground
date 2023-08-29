@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOCUMENT</title>
+
+    <style>
+         *, *:before, *:after{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            :root {
+                --main-color: #001d30;
+                --sec-color: #51eeee;
+            }
+            main {
+                background-color: var(--main-color);
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            main > div{
+                height: 150px;
+                width: 150px;
+                background: linear-gradient(to top, var(--main-color) 40%, var(--sec-color));
+                border-radius: 50%;
+                position: relative;
+                animation: rott 2s linear infinite;
+            }
+
+            @keyframes rott {
+                to {
+                    transform: rotate(360deg);
+                }
+            } 
+            main > div::before{
+                content: "";
+                background: var(--main-color);
+                inset: 20px 20px 0 0;
+                border-radius: 50%;
+                position: absolute;
+            }
+            main > div::after{
+                content: "";
+                background: var(--sec-color);
+                position: absolute;
+                right: -8px;
+                top: 50px;
+                width: 40px;
+                height: 40px;
+                border-radius: inherit;
+                box-shadow: 0 0 5px var(--sec-color), 0 0 25px var(--sec-color), 0 0 50px var(--sec-color), 0 0 75px var(--sec-color);
+            }
+
+            
+    </style>
+</head>
+<body>
+    <main>
+        <div></div>
+    </main>
+
+    <script>
+        class Animal{
+  constructor(name, age){
+    this._name = name;
+    this._age = age;
+  }
+
+  get getName(){
+    return this._name;
+  }
+
+  set setName(name){
+    this._name = name;
+  }
+  get getAge(){
+    return this._age;
+  }
+
+  set setAge(age){
+    this._age = age;
+  }
+}
+class Cat extends Animal{
+  constructor(name, age, breed){
+    super(name, age);
+    this._breed = breed;
+  }
+
+  get getBreed(){
+    return this._breed;
+  }
+
+  set setBreed(breed){
+    this._breed = breed;
+  }
+}
+const nala = new Animal("Nala", 4.5);
+console.log(nala.getName, nala.getAge);
+
+const genius = new Cat("Genius", 2, "unknown!");
+console.log(genius.getName, genius.getAge, genius.getBreed);
+
+//factory function
+
+function car(model, age){
+  return {
+    model,
+    age
+  }
+}
+
+const lovely = car("Lexus", 2021);
+console.log(lovely.model, lovely.age);
+
+function Planet(name, distance){
+  this.name = name;
+  this.distance = distance;
+  this.getName = function(){
+    return this.name;
+  };
+  this.getDistance = function(){
+    return this.distance;
+  }
+}
+const earth = new Planet("Earth", 0);
+console.log(earth.getName(), earth.getDistance())
+
+    </script>
+</body>
+</html>

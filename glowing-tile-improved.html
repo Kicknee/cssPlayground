@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOCUMENT</title>
+
+    <style>
+         *, *:before, *:after{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+          body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgb(33, 33, 80);
+          }
+         
+          div{
+            height: 350px;
+            width: 300px;
+            background: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+          }
+          div:before{
+            content: "";
+            position: absolute;
+            width: 30%;
+            height: 150%;
+            background: linear-gradient(red, rgb(102, 30, 219));
+            animation: rotate 3s linear infinite;
+          }
+          div:after{
+            content: "";
+            position: absolute;
+            inset: 3px;
+            border-radius: 17px;
+            background: rgb(33, 33, 80);;
+          }
+          h1{
+            z-index: 1;
+            font-size: 10rem;
+            color: white;
+            font-family: sans-serif;
+          }
+          @keyframes rotate {
+            0%{
+              transform: rotate(0);
+            }
+            100%{
+              transform: rotate(360deg);
+            }
+          }
+    </style>
+</head>
+<body>
+  <div>
+    <h1>03</h1>
+  </div>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        *, *:before, *:after{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: black;
+            }
+
+            .box{
+                display: flex;
+                flex-direction: column;
+                justify-content:space-around;
+                height: 500px;
+                width: 400px;
+                font-family: sans-serif;
+            }
+            h1 {
+                font-size: 4rem;
+                font-weight: 800;
+                -webkit-text-stroke: 1px white;
+                user-select: none;
+                white-space: nowrap; 
+                transition: all .5s;
+                position: relative;
+            }
+            h1:before{
+                content: attr(data-text);
+                -webkit-text-fill-color: red;
+                -webkit-text-stroke-color: black;
+                position: absolute;
+                transform: translate(0, 0);
+                opacity: 0;
+                transition: all .5s;
+            }
+            h1:after{
+                content: attr(data-text);
+                -webkit-text-fill-color: aqua;
+                -webkit-text-stroke-color: black;
+                position: absolute;
+                left: 0;
+                transform: translate(0, 0);
+                opacity: 0;
+                transition: all .5s;
+            }
+            h1:hover{
+                color: white;
+            }
+            h1:hover:before{
+                transform: translate(10px, -10px);
+                opacity: 1;
+            }
+            h1:hover:after{
+                transform: translate(20px, -20px);
+                opacity: 1;
+            }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1 data-text="HOME">HOME</h1>
+        <h1 data-text="ABOUT">ABOUT</h1>
+        <h1 data-text="PORTFOLIO">PORTFOLIO</h1>
+        <h1 data-text="TEAM">TEAM</h1>
+        <h1 data-text="CONTACT">CONTACT</h1>
+    </div>
+</body>
+</html>
