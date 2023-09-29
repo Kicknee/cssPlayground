@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOCUMENT</title>
+
+    <style>
+         *, *:before, *:after{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body{
+                overflow: hidden;
+            }
+            section{
+                width: 100vw;
+                height: 100vh;
+                background-color: black;
+                
+            }
+            .tile{
+                position: relative;
+                width: 40px;
+                height: 40px;
+                animation: move 5s linear;
+            }
+
+            @keyframes move {
+                0%{
+                    transform: translateY(0) scale(0) rotate(0);
+                    opacity: 0;
+                }
+                50% {
+                    opacity: 1;
+                    transform: translateY(-250px) scale(1) rotate(180deg);
+                }
+                100%{
+                    transform: translateY(-500px) scale(.5) rotate(360deg);
+                    opacity: 0;
+                    border-radius: 30px;
+                }
+            }
+    </style>
+</head>
+<body>
+    <section></section>
+
+    <script>
+
+        const addTile = () => {
+            const main = document.querySelector("section");
+            const tile = document.createElement("div");
+            const source = "abcdef0123456789";
+            let color = "#";
+
+            while(color.length != 7){
+                color += source.split("")[Math.floor(Math.random()*source.length)];
+            }
+            tile.classList.add("tile");
+            tile.style.background = color;
+            
+            let position = {
+                horizontal: Math.floor(Math.random()*window.innerWidth),
+                vertical: Math.floor(Math.random()*window.innerHeight)
+            }
+            tile.style.left = position.horizontal + "px";
+            tile.style.top = position.vertical + "px";
+
+            main.appendChild(tile);
+
+            setTimeout(() => tile.remove(), 5000);
+        }
+        setInterval(addTile, 1000);
+    </script>
+</body>
+</html>

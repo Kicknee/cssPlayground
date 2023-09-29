@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Project 1</title>
+        <link href="https://fonts.googleapis.com/css?family=Bungee|Bungee+Shade|Covered+By+Your+Grace" rel="stylesheet">
+        
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:800" rel="stylesheet">
+        <style>
+
+            *, *:before, *:after {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            body{
+                background-color: rgb(216, 93, 93);
+                width: 100%;
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                font-family: 'Bungee', Helvetica, Arial, sans-serif;
+            }
+
+            .picture {
+                width: 400px;
+                height: 350px;
+                border: rgb(41, 39, 39) solid 8px;
+                border-radius: 5px;
+                background-position: center;
+                background-size: cover;
+                position: relative;
+            }
+            .header {
+                font-family: 'Bungee Shade', cursive;
+
+                font-size: 24px;
+                height: 95px;
+                margin-top: -20px;
+                
+            }
+            .header1 {
+                font-size: 18px;
+                margin-bottom: 10px;
+            }
+            .header1 h3 {
+                height: 25px;
+            }
+            .clock {
+                font-size: 27px;
+                text-align: center;
+                font-weight: 800;
+            }
+
+            .options {
+                margin: 20px 0 15px;
+            }
+            .options div{
+                height: 30px;
+            }
+            .options label {
+                font-weight: 700;
+            }
+
+            #butt {
+                font-weight: 800;
+                font-size: 18px;
+                width: 300px;
+                padding: 5px;
+                color: white;
+                background-color: rgb(41, 39, 39);
+                border-radius: 5px;
+                border: none;
+            }
+
+            #butt:focus {
+                outline: none;
+            }
+            .messageText {
+                font-family: 'Open Sans', sans-serif;
+                width: 100%;
+                font-size: 36px;
+                color: white;
+                font-weight: 800;
+                position: absolute;
+                bottom: 10px;
+                text-shadow: 2px 2px #000;
+                text-align: center;
+            }
+            .footer {
+                margin-bottom: 10px;
+                font-size: 14px;
+            }
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <h1>LOLCAT CLOCK</h1>
+        </div>
+        
+        <div class="header1">
+            <h3>I CAN HAZE TIME??</h3>
+            <div class="clock"></div>
+        </div>
+
+        <div class="picture">
+            <p class="messageText"></p>
+        </div>
+
+        <div class="options">
+            <div id="wake">
+                <label for="wake_time">SET WAKE UP TIME</label>
+                <select id="wake_time">
+                    <option value="1">1 AM-2AM</option>
+                    <option value="2">2 AM-3AM</option>
+                    <option value="3">3 AM-4AM</option>
+                    <option value="4">4 AM-5AM</option>
+                    <option value="5">5 AM-6AM</option>
+                    <option value="6">6 AM-7AM</option>
+                    <option value="7">7 AM-8AM</option>
+                    <option value="8">8 AM-9AM</option>
+                    <option value="9">9 AM-10AM</option>
+                    <option value="10">10 AM-11AM</option>
+                    <option value="11">11 AM-12PM</option>
+                    <option value="12">12 PM-1PM</option>
+                    <option value="13">1 PM-2PM</option>
+                    <option value="14">2 PM-3PM</option>
+                    <option value="15">3 PM-4PM</option>
+                    <option value="16">4 PM-5PM</option>
+                    <option value="17">5 PM-6PM</option>
+                    <option value="18">6 PM-7PM</option>
+                    <option value="19">7 PM-8PM</option>
+                    <option value="20">8 PM-9PM</option>
+                    <option value="21">9 PM-10AM</option>
+                    <option value="22">10 PM-11PM</option>
+                    <option value="23">11 PM-12AM</option>
+                    <option value="24">12 AM-11AM</option>
+                </select>
+            </div>
+            <div id="launch">
+                <label for="launch_time">SET LAUNCH TIME</label>
+                <select id="launch_time">
+                    <option value="1">1 AM-2AM</option>
+                    <option value="2">2 AM-3AM</option>
+                    <option value="3">3 AM-4AM</option>
+                    <option value="4">4 AM-5AM</option>
+                    <option value="5">5 AM-6AM</option>
+                    <option value="6">6 AM-7AM</option>
+                    <option value="7">7 AM-8AM</option>
+                    <option value="8">8 AM-9AM</option>
+                    <option value="9">9 AM-10AM</option>
+                    <option value="10">10 AM-11AM</option>
+                    <option value="11">11 AM-12PM</option>
+                    <option value="12">12 PM-1PM</option>
+                    <option value="13">1 PM-2PM</option>
+                    <option value="14">2 PM-3PM</option>
+                    <option value="15">3 PM-4PM</option>
+                    <option value="16">4 PM-5PM</option>
+                    <option value="17">5 PM-6PM</option>
+                    <option value="18">6 PM-7PM</option>
+                    <option value="19">7 PM-8PM</option>
+                    <option value="20">8 PM-9PM</option>
+                    <option value="21">9 PM-10AM</option>
+                    <option value="22">10 PM-11PM</option>
+                    <option value="23">11 PM-12AM</option>
+                    <option value="24">12 AM-11AM</option>
+                </select>
+            </div>
+            <div id="nap">
+                <label for="nap_time">SET NAP TIME</label>
+                <select id="nap_time">
+                    <option value="1">1 AM-2AM</option>
+                    <option value="2">2 AM-3AM</option>
+                    <option value="3">3 AM-4AM</option>
+                    <option value="4">4 AM-5AM</option>
+                    <option value="5">5 AM-6AM</option>
+                    <option value="6">6 AM-7AM</option>
+                    <option value="7">7 AM-8AM</option>
+                    <option value="8">8 AM-9AM</option>
+                    <option value="9">9 AM-10AM</option>
+                    <option value="10">10 AM-11AM</option>
+                    <option value="11">11 AM-12PM</option>
+                    <option value="12">12 PM-1PM</option>
+                    <option value="13">1 PM-2PM</option>
+                    <option value="14">2 PM-3PM</option>
+                    <option value="15">3 PM-4PM</option>
+                    <option value="16">4 PM-5PM</option>
+                    <option value="17">5 PM-6PM</option>
+                    <option value="18">6 PM-7PM</option>
+                    <option value="19">7 PM-8PM</option>
+                    <option value="20">8 PM-9PM</option>
+                    <option value="21">9 PM-10AM</option>
+                    <option value="22">10 PM-11PM</option>
+                    <option value="23">11 PM-12AM</option>
+                    <option value="24">12 AM-11AM</option>
+                </select>
+            </div>
+        </div>
+
+        <button id="butt">PARTY TIME!</button>
+
+        <div class="fotter">&copy; SKILLCRUSH 2016</div>
+
+        <script>
+            const butt = document.querySelector("#butt");
+            const pic = document.querySelector(".picture");
+            let date = new Date();
+            let hr = date.getHours();
+            let min = date.getMinutes();
+            let sec = date.getSeconds();
+            let mess = document.querySelector(".messageText");
+
+            const launch = document.querySelector("#launch_time"),
+                 wake = document.querySelector("#wake_time"), 
+                 nap = document.querySelector("#nap_time");
+
+            let launch_time, wake_time, nap_time, partytime;
+
+            launch.addEventListener("change", () => { launch_time = launch.value; });
+            wake.addEventListener("change", () => { wake_time = wake.value; });
+            nap.addEventListener("change", () => { nap_time = nap.value; });
+
+            function timer() {
+                
+                const clock = document.querySelector(".clock");
+                date = new Date();
+                hr = date.getHours() % 12;
+                min = date.getMinutes() < 10 ? "0"+date.getMinutes() : date.getMinutes();;
+                sec = date.getSeconds() < 10 ? "0"+date.getSeconds() : date.getSeconds();;
+                appm = date.getHours() >= 12 ? "PM" : "AM";
+                
+                clock.textContent = `${hr}:${min}:${sec} ${appm}!`;
+
+                change_pic();
+            }
+            timer();
+            setInterval(timer, 1000);
+
+          
+
+            function change_pic (){
+                let hr24 = hr + 12;
+
+                if(partytime == -1){
+                    return;
+
+                }else if(hr24 == wake_time){
+                    pic.setAttribute("style", "background-image: url(https://s3.amazonaws.com/media.skillcrush.com/skillcrush/wp-content/uploads/2016/09/cat1.jpg)");
+                    mess.textContent = "Wake up!";
+                    
+                } else if(hr24 == launch_time){
+                    pic.setAttribute("style", "background-image: url(https://s3.amazonaws.com/media.skillcrush.com/skillcrush/wp-content/uploads/2016/09/cat2.jpg)");
+                    mess.textContent = "Let's have some lunch!";
+                    
+                } else if(hr24 == nap_time){
+                    pic.setAttribute("style", "background-image: url(https://s3.amazonaws.com/media.skillcrush.com/skillcrush/wp-content/uploads/2016/09/cat3.jpg)");
+                    mess.textContent = "Sleep tight!";
+                    
+                } else if(hr24 < 12){
+                    pic.setAttribute("style", "background-image: url(https://pbs.twimg.com/profile_images/378800000532546226/dbe5f0727b69487016ffd67a6689e75a.jpeg)");
+                    mess.textContent = "Good morning!";
+
+                }  else if(hr24 >= 18){
+                    pic.setAttribute("style", "background-image: url(https://upload.wikimedia.org/wikipedia/commons/8/8c/Cat_sleep.jpg)");
+                    mess.textContent = "Good evening!";
+                    
+                } else if(hr24 >= 12){
+                    pic.setAttribute("style", "background-image: url(https://s3.amazonaws.com/media.skillcrush.com/skillcrush/wp-content/uploads/2016/08/normalTime.jpg)");
+                    mess.textContent = "Good afternoon!";
+
+                }
+
+            }
+
+            butt.addEventListener("click", function () {
+                
+                if(butt.textContent == "PARTY TIME!"){
+                    partytime = -1;
+                    butt.textContent = "PARTY OVER!";
+                    butt.setAttribute("style", "background-color: rgb(137, 137, 228)");
+                    pic.setAttribute("style", "background-image: url(https://terri0729.files.wordpress.com/2012/01/19307-oboi-vecherinka-e1327632304699.jpg)");
+                    mess.textContent = "Let's party!";
+                } else{
+                    partytime = null;
+                    change_pic();
+                    butt.textContent = "PARTY TIME!";
+                    butt.setAttribute("style", "background-color: rgb(41, 39, 39)");
+                }
+            });
+
+
+        </script>
+    </body>
+</html>

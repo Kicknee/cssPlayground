@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+        body{
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            transition: all .5s linear;
+            position: relative;
+        }
+        body.active {
+            background-color: black;
+        }
+
+        .butt_pla{
+            width: 60px;
+            height: 25px;
+            border-radius: 15px;
+            background-color: rgb(45, 45, 48);
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            box-shadow: 0 0 5px black;
+        }
+        .butt_pla.active {
+            background-color: gray;
+        }
+
+        .butt {
+            width: 25px;
+            height: 25px;
+            border-radius: 30px;
+            background: radial-gradient( rgb(129, 127, 127) 40%, rgb(65, 65, 70) 100%);
+            position: absolute;
+            transition: all .2s linear;
+            left: 0;
+            
+        }
+        .butt.active {
+            left: 35px;
+            background: radial-gradient( rgb(129, 127, 127) 20%, rgb(65, 65, 70) 100%);
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div class="butt_pla"><div class="butt "></div></div>
+
+    <script>
+        const button = document.querySelector(".butt");
+        const body = document.querySelector("body");
+        const butt_pla = document.querySelector(".butt_pla");
+        butt_pla.addEventListener("click", () => {
+                button.classList.toggle("active");
+                body.classList.toggle("active");
+                butt_pla.classList.toggle("active");
+        });
+    </script>
+</body>
+</html>

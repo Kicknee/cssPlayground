@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Project 2</title>
+
+        <style>
+            *, *:before, *:after{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body{
+                width: 100%;
+                height: 100vh;
+                display: flex;
+                flex-direction: column;
+                font-family: sans-serif;
+                align-items: center;
+                justify-content: center;
+                background-image: linear-gradient(90deg, rgb(36, 34, 34) 30%, rgb(121, 46, 46) 100%);
+            }
+
+            #main > * {
+                margin: 10px 0;
+            }
+            #tip_calc {
+                height: 500px;
+                width: 330px;
+                background-color: white;
+                border-radius: 10px;
+            }
+
+            #header {
+                background-color: black;
+                color: white;
+                padding: 10px;
+                text-align: center;
+                border-top-left-radius: 10px ;
+                border-top-right-radius: 10px ;
+            }
+
+            #main {
+                padding: 10px 15px;
+            }
+
+            #service {
+                position: relative;
+                left: 20px;
+                width: 240px;
+                height: 40px;
+                border-radius: 5px;
+                font-size: 19px;
+                text-align-last: center;
+                font-weight: 600;
+            }
+            input {
+                padding: 3px;
+            }
+            .button {
+                width: 330px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                
+            }
+            #butt {
+                height: 50px;
+                width: 200px;
+                color: white;
+                padding: 10px;
+                background-color:  rgb(173, 57, 57);
+                font-weight: 600;
+                font-size: 20px;
+                border-radius: 5px;
+                margin-top: 20px;
+                border: none;
+            }
+
+            #butt {
+                outline: none;
+            }
+
+            #amount {
+                text-align: center;
+                margin-top: 30px;
+                font-weight: 600;
+            }
+            #amount p{
+                padding: 3px;
+            }
+            
+        </style>
+    </head>
+    <body>
+
+        <div id="tip_calc">
+            <div id="header">
+                <h3>TIP CALCULATOR</h3>
+            </div>
+            
+            <div id="main">
+                <p>How much was you bill?</p>
+
+                <div class="bill_input">
+                    <label for="bill_amount">$</label>
+                    <input type="text" id="bill_amount" placeholder="Bill Amount">
+                </div>
+
+                <p>How was you service?</p>
+
+                <div class="opt">
+                    <select id="service">
+                        <option value="">-- Choose an Option --</option>
+                        <option value="0.30">30% - Outstanding</option>
+                        <option value="0.20">20% - Good</option>
+                        <option value="0.15">15% - It was OK</option>
+                        <option value="0.10">10% - Bad</option>
+                        <option value="0.05">5% - Terrible</option>
+                    </select>
+                </div>
+
+                <p>How many people are sharing the bill?</p>
+
+                <div class="people_input">
+                    <input type="text" id="people_amount" placeholder="Number of People">
+                    <label for="people_amount">people</label>
+                </div>
+                <div class="button">
+                <button id="butt">CALCULATE!</button>
+            </div>
+                <div id="amount">
+                </div>
+            </div>
+        </div>
+
+        <script>
+
+            const butt = document.querySelector("#butt");
+            
+            butt.addEventListener("click", () => {
+                let bill = document.querySelector("#bill_amount").value;
+                let people = document.querySelector("#people_amount").value;
+                let pct = document.querySelector("#service").value;
+
+                const tip_result = document.querySelector("#amount");
+
+                if(document.querySelector("#tip")){
+                    document.querySelector("#tip").remove();
+                }
+
+                let tip = document.createElement("div");
+                    tip.setAttribute("id", "tip");
+
+                let p1 = document.createElement("p");
+                   p1.textContent = "TIP AMOUNT";
+
+                const p2 = document.createElement("p");
+                    p2.textContent = "$"+((bill / people) * pct).toFixed(2);
+
+                tip.appendChild(p1);
+                tip.appendChild(p2);
+
+                if(people > 1){
+                    const p3 = document.createElement("each");
+                        p3.textContent = "each"
+                    tip.appendChild(p3);
+                }
+
+                tip_result.appendChild(tip);
+
+            });
+
+        </script>
+    </body>
+</html>

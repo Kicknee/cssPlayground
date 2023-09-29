@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 7</title>
+
+    <style>
+         *, *:before, *:after{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+            body {
+                background: url("https://cdn.pixabay.com/photo/2016/03/23/12/53/clock-1274699_1280.jpg") center/cover no-repeat;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                color: white;
+                height: 100vh;
+                font-family: 'Poppins', sans-serif;
+            }
+
+            .container {
+                text-align: center;
+                width: 600px;
+            }
+            h1 {
+                font-size: 3rem;
+                margin-bottom: 10px;
+            }
+            .time {
+                font-size: 2.5rem;
+                display: flex;
+                justify-content: center;
+                flex: .5;
+            }
+
+            .time div {
+                margin: 20px 15px;
+            }
+
+            .time p:nth-child(2) {
+                font-size: 1.1rem;
+                margin-top: 5px;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Till Something</h1>
+        <div class="time">
+            <div class="days">
+                <p></p>
+                <p>days</p>
+            </div>
+            <div class="hours">
+                <p></p>
+                <p>hours</p>
+            </div>
+            <div class="minutes">
+                <p></p>
+                <p>minutes</p>
+            </div>
+            <div class="seconds">
+                <p></p>
+                <p>seconds</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const date_till = "31 Dec 2021";
+
+        const days_el = document.querySelector(".days").children[0];
+        const hours_el = document.querySelector(".hours").children[0];
+        const minutes_el = document.querySelector(".minutes").children[0];
+        const seconds_el = document.querySelector(".seconds").children[0];
+
+        function till_time() {
+            const date = (new Date(date_till) - new Date()) / 1000;
+            const days = Math.floor((date / 3600) / 24);
+            const hours = Math.floor((date / 3600) % 24);
+            const minutes = Math.floor((date / 60) % 60);
+            const seconds = Math.floor(date % 60);
+
+            days_el.textContent = days < 10 ? "0"+days : days;
+            hours_el.textContent = hours < 10 ? "0"+hours : hours;
+            minutes_el.textContent = minutes < 10 ? "0"+minutes : minutes;
+            seconds_el.textContent = seconds < 10 ? "0"+seconds : seconds;
+        }
+
+        till_time();
+
+        setInterval(till_time, 1000);
+    </script>
+</body>
+</html>

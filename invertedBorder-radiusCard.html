@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inverted border-radius Card</title>
+
+    <style>
+      :root {
+        --bcgColor: black;
+      }
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: var(--bcgColor);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .card {
+        width: 320px;
+        height: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .imgBox {
+        position: relative;
+        width: 100%;
+        height: 240px;
+        background-image: url("711435.jpg");
+        background-position: right;
+        background-size: cover;
+        border-radius: 15px;
+      }
+
+      .imgBox::before {
+        content: "";
+        width: 25px;
+        height: 25px;
+        background-color: transparent;
+        position: absolute;
+        bottom: 70px;
+        left: 0;
+        border-radius: 50%;
+        box-shadow: -10px 10px 0 var(--bcgColor);
+      }
+      .imgBox::after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-color: transparent;
+        z-index: 3;
+        bottom: 0;
+        left: 50%;
+        border-radius: 50%;
+        box-shadow: -10px 10px 0 var(--bcgColor);
+      }
+
+      .content {
+        position: relative;
+        width: 100%;
+        height: 150px;
+        background-color: rgb(36, 41, 48);
+        border-radius: 15px;
+        border-top-left-radius: 0;
+      }
+      .price {
+        position: absolute;
+        width: 50%;
+        height: 80px;
+        left: 0;
+        top: -80px;
+        background-color: rgb(36, 41, 48);
+        /* border-top-right-radius: 25px;
+        box-shadow: 10px -10px 0 5px var(--bcgColor); */
+        border-top: 10px solid var(--bcgColor);
+        border-right: 10px solid var(--bcgColor);
+        border-top-right-radius: 25px;
+      }
+      .price::before {
+        content: "";
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        background-color: transparent;
+        top: 0;
+        left: 0;
+        border-radius: 50%;
+        box-shadow: -10px -10px 0 var(--bcgColor);
+      }
+      .price::after {
+        content: "";
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        background-color: transparent;
+        bottom: 0;
+        right: -25px;
+        border-radius: 50%;
+        box-shadow: -10px 10px 0 rgb(36, 41, 48);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="imgBox"></div>
+      <div class="content">
+        <span class="price"></span>
+      </div>
+    </div>
+  </body>
+</html>

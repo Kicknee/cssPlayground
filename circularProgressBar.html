@@ -1,0 +1,98 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Magic Line Icon Fill Hover</title>
+
+    <style>
+        *, *:before, *:after{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+          body {
+            background: rgb(82, 7, 85);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+
+          section {
+              width: 750px;
+              height: 380px;
+              display: flex;
+              justify-content: space-between;
+              text-align: center;
+          }
+          .tile{
+              height: 100%;
+              width: calc(100%/3 - 15px);
+              position: relative;
+              display: flex;
+              justify-content: center;
+          }
+          .tile:after{
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background-color: rgba(245, 245, 245, 0.315);
+            filter: blur(5px);
+          }
+          .label{
+              height: 40px;
+              width: 80px;
+              padding: 5px;
+              border-radius: 5px;
+              justify-self: end;
+              align-self: flex-end;
+              transform: translate(0, 20px);
+              background-color: red;
+              transition: 2s;
+              z-index: 1;
+              
+          }
+          .tile:hover .label{
+            animation: move 2s;
+            z-index: 0;
+          }
+
+          @keyframes move {
+              0%{
+                transform: translate(0, 20px);
+              }
+              50%{
+                transform: translate(0, 40px);
+              }
+              100%{
+                transform: translate(0, 20px);
+              }
+          }
+    </style>
+</head>
+<body>
+    <section>
+        <div class="tile">
+            <div class="label">
+                <p>Something</p>
+            </div>
+        </div>
+        <div class="tile">
+            <div class="label">
+                <p>Something</p>
+            </div>
+        </div>
+        <div class="tile">
+            <div class="inner"></div>
+            <div class="label">
+                <p>Something</p>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

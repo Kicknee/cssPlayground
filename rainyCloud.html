@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rainy Cloud</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: black;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .rainyCloudBox {
+        height: 450px;
+        width: 200px;
+        border-bottom: 2px solid white;
+      }
+      .cloud {
+        background-color: white;
+        width: 100%;
+        height: 70px;
+        border-radius: 70px;
+        position: relative;
+        top: 70px;
+      }
+      .cloud::before {
+        content: "";
+        position: absolute;
+        background-color: white;
+        border-radius: 50%;
+        height: 70px;
+        width: 70px;
+        top: -35px;
+        left: 30px;
+        box-shadow: 60px 0 0 15px white;
+      }
+      .rain {
+        position: relative;
+        display: flex;
+        z-index: 1;
+        padding: 30px 0 0 23px;
+      }
+      span {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background-color: white;
+        margin-left: 3px;
+        animation: fall 5s linear infinite;
+        animation-duration: calc(55s / var(--i));
+      }
+
+      @keyframes fall {
+        0% {
+          transform: translateY(0) scale(1);
+        }
+        70% {
+          transform: translateY(345px) scale(1);
+        }
+        100% {
+          transform: translateY(345px) scale(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="rainyCloudBox">
+      <div class="cloud"></div>
+      <div class="rain">
+        <span style="--i: 11"></span>
+        <span style="--i: 12"></span>
+        <span style="--i: 10"></span>
+        <span style="--i: 14"></span>
+        <span style="--i: 18"></span>
+        <span style="--i: 16"></span>
+        <span style="--i: 19"></span>
+        <span style="--i: 20"></span>
+        <span style="--i: 19"></span>
+        <span style="--i: 10"></span>
+        <span style="--i: 16"></span>
+        <span style="--i: 14"></span>
+        <span style="--i: 18"></span>
+        <span style="--i: 11"></span>
+        <span style="--i: 13"></span>
+        <span style="--i: 15"></span>
+        <span style="--i: 12"></span>
+        <span style="--i: 17"></span>
+        <span style="--i: 13"></span>
+        <span style="--i: 15"></span>
+      </div>
+    </div>
+  </body>
+</html>

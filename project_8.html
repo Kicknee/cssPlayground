@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOCUMENT</title>
+
+    <style>
+         *, *:before, *:after{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+            body {
+                height: 100vh;
+                font-family: 'Poppins', sans-serif;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: aliceblue;
+            }
+            .container {
+                width: 450px;
+                height: 400px;
+                box-shadow: 0 0 8px black;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+                border-radius: 10px;
+                overflow: hidden;
+            }
+
+            .question {
+                text-align: center;
+                font-size: 1.3rem;
+                font-weight: 600;
+                margin-top: 50px;
+                width: 70%;
+            }
+
+            form {
+                margin: 10px 0;
+                display: flex;
+                flex-direction: column;
+                width: 80%;
+            }
+            form div {
+                padding: 5px;
+                display: flex;
+                align-items: center;
+            }
+
+            label {
+                margin-left: 10px;
+            }
+
+            button {
+                height: 70px;
+                width: 100%;
+                font-size: 1.1rem;
+                background-color: rgb(30, 30, 230);
+                color: white;
+                border: none;
+            }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="question">XXX</div>
+        <form>
+            <div>
+                <input type="radio" name="answer" id="a">
+                <label for="a">XXX</label>
+            </div>
+            
+            <div>
+                <input type="radio" name="answer" id="b">
+                <label for="b">XXX</label>
+            </div>
+            
+            <div>
+                <input type="radio" name="answer" id="c">
+                <label for="c">XXX</label>
+            </div>
+            <div>
+                <input type="radio" name="answer" id="d">
+                <label for="d">XXX</label>
+            </div>
+        </form>
+        <button>Submit</button>
+    </div>
+    
+    <script>
+
+        const questions = [
+            {
+                question: "How many legs does the Legs of Man have?",
+                a: "one",
+                b: "two",
+                c: "three",
+                d: "four",
+                correct: "c"
+            },
+            {
+                question: "Which sea creature has three hearts?",
+                a: "Shark",
+                b: "Dolphin",
+                c: "Octopus",
+                d: "Viperfish",
+                correct: "c"
+            },
+            {
+                question: "Water boils at 212 degrees on which temperature scale?",
+                a: "Fahrenheit",
+                b: "Celsius",
+                c: "Kelvin",
+                d: "Rankine",
+                correct: "a"
+            },
+            {
+                question: "How many tails does a Manx cat have?",
+                a: "one",
+                b: "two",
+                c: "three",
+                d: "none",
+                correct: "d"
+            }
+        ]
+
+        let question = document.querySelector(".question");
+        let answers = document.querySelectorAll("label");
+        const answers_sel = document.querySelectorAll("input");
+        const submit = document.querySelector("button");
+        let question_num = 0;
+        let correct = 0;
+
+        function fill_quiz() {
+           
+            if(question_num == questions.length){
+                question.textContent = `Congrats your score is ${correct}!!!`;
+
+                answers.forEach(el => {
+                el.textContent = "";
+                });
+
+                submit.textContent = "Reload";
+                return;
+                
+            } 
+
+            question.textContent = questions[question_num].question;
+           
+            answers[0].textContent = questions[question_num].a;
+            answers[1].textContent = questions[question_num].b;
+            answers[2].textContent = questions[question_num].c;
+            answers[3].textContent = questions[question_num].d;
+        }
+
+        submit.addEventListener("click", (event) => {
+            let check = 0;
+            if(question_num == questions.length) location.reload();
+
+            answers_sel.forEach(el => {
+                
+                if(el.id == questions[question_num].correct && el.checked) {
+                    correct++;
+                } else if (!el.checked) check++;
+
+            });
+                if(check == answers.length){
+                    check = 0;
+                    alert("select an option");
+                } else{
+                        answers_sel.forEach(el => {
+                        el.checked = false;
+                    });
+                    ++question_num;
+                    fill_quiz();
+                }
+            });
+           
+        
+
+        window.addEventListener('DOMContentLoaded', fill_quiz);
+    </script>
+</body>
+</html>

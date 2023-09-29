@@ -1,0 +1,70 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Rotating Image Gallery</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #000;
+        }
+
+        .box{
+            position: relative;
+            width: 200px;
+            height: 200px;
+            transform-style: preserve-3d;
+            animation: animate 20s linear infinite;
+        }
+
+        @keyframes animate {
+            0%{
+                transform: perspective(1000px) rotateY(0deg);
+            }
+            100%{
+                transform: perspective(1000px) rotateY(360deg);
+            }
+        }
+
+        .box span{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform-origin: center;
+            transform: rotateY(calc(var(--i) * 45deg)) translateZ(400px);
+            -webkit-box-reflect: below 0px linear-gradient(transparent, transparent, #0004);
+        }
+
+        .box span img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="box">
+        <span style="--i:1;"><img src="C:/Users/danis/OneDrive/Obrazy/wp/2012-08-13-FULL_Adam_Doyle.jpg" alt=""></span>
+        <span style="--i:2;"><img src="C:\Users\danis\OneDrive\Obrazy\wp/2012-08-13-FULL_Carlos_Gonz__lez.jpg" alt=""></span>
+        <span style="--i:3;"><img src="C:\Users\danis\OneDrive\Obrazy\wp/2012-08-13-FULL_Christean_Murray.jpg" alt=""></span>
+        <span style="--i:4;"><img src="C:\Users\danis\OneDrive\Obrazy\wp/2012-08-13-FULL_Dennis_Helfrich.jpg" alt=""></span>
+        <span style="--i:5;"><img src="C:\Users\danis\OneDrive\Obrazy\wp/2012-08-13-FULL_DKHL.jpg" alt=""></span>
+        <span style="--i:6;"><img src="C:\Users\danis\OneDrive\Obrazy\wp/2012-08-13-FULL_Mat_Doidge.jpg" alt=""></span>
+        <span style="--i:7;"><img src="C:\Users\danis\OneDrive\Obrazy\wp/2012-08-13-FULL_Mikael_Andreasson.jpg" alt=""></span>
+        <span style="--i:8;"><img src="C:\Users\danis\OneDrive\Obrazy\wp/2012-08-13-FULL_Yonas_Mkharbeche.jpg" alt=""></span>
+    </div>
+</body>
+</html>

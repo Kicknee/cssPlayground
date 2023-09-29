@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOCUMENT</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
+
+         *, *:before, *:after{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            :root {
+                --appBack: #040f2d;
+                --eleBack: #091642;
+                --switchOff: #14244c;
+                --switchOn: #157af5;
+            }
+            body {
+                background-color: rgb(58, 58, 109);
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            #container {
+                width: 300px;
+                height: 650px;
+                background-color: var(--appBack);
+                display: flex;
+                flex-direction: column;
+                color: white;
+                font-family: 'Roboto', sans-serif;
+                padding: 30px 10px 15px;
+            }
+
+            .header{
+                height: 15%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-size: 23px;
+            }
+            
+            h1 {
+                font-size: 23px;
+            }
+            .output{
+                height: 15%;
+                padding: 5px 10px;
+                overflow-x: hidden;
+            }
+
+            form {
+                height: 70%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                font-size: 14px;
+            }
+
+            img {
+                width: 20%;
+                border-radius: 50%;
+                border: 2px solid rgb(255, 255, 255);
+            }
+
+            label, input[id="range"]{
+                padding-right: 5px;
+                border-radius: 5px;
+                height: 50px;
+                background-color: var(--eleBack);
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+            .range {
+                border-radius: 5px;
+                height: 50px;
+                background-color: var(--eleBack);
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 5px;
+                margin-bottom: 10px;
+            }
+
+            .range input {
+                flex: .8;
+            }
+           .info {
+            color: #586287;
+            font-size: 14px;
+           }
+           .output {
+                height: 70px;
+                border-radius: 5px;
+                background-color: var(--eleBack);
+                margin: 10px 0 30px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 19px;
+           }
+
+           .info, label {
+               text-indent: 5px;
+           }
+
+           .button {
+               background-color: var(--switchOn);
+               color: white;
+               height: 50px;
+               border-radius: 5px;
+               font-weight: 600;
+               letter-spacing: 1px;
+               outline: none;
+               border: none;
+               margin-top: 10px;
+           }
+
+            
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="header">
+            <h1>Generate password</h1>
+            <img src="C:\Users\danis\OneDrive\Obrazy\86518.png" alt="">
+        </div>
+        <div class="display">
+            <p class="info">GENERATED PASSWORD</p>
+            <div class="output">DsdfSADsd3!</div>
+        </div>
+        
+        <form action="">
+            <p class="info">LENGTH: <span id="len_num">13</span></p>
+            <div class="range">
+                <span>4</span>
+                <input type="range" name="range" id="range" min="4" max="21" value="13">
+                <span>21</span>
+            </div>
+            <p class="info">SETTINGS</p>
+            <label for="numbers">Include numbers
+            <input id="numbers" name="numbers" type="checkbox"></label>
+            <label for="lowercase">Include lowercase
+            <input id="lowercase" name="lowercase" type="checkbox"></label>
+            <label for="uppercase">Include uppercase
+            <input id="uppercase" name="uppercase" type="checkbox"></label>
+            <label for="symbols">Include symbols
+            <input id="symbols" name="symbols" type="checkbox"></label>
+
+            <input class="button" type="submit" value="GENERATE PASSWORD">
+        </form>
+
+        <script>
+            
+            const button = document.querySelector(".button");
+            const len = document.querySelector("#range");
+           
+            len.addEventListener("input", (e) => {
+                const update_len = document.querySelector("#len_num");
+
+                update_len.textContent = e.target.value;
+
+            });
+
+            button.addEventListener("click", (e) => {
+                e.preventDefault();
+                generatePswd();
+            });
+
+            function generatePswd(){
+                const len = document.querySelector("#range").value;
+                const result = document.querySelector(".output");
+
+                const numbers_box = document.querySelector("#numbers").checked;
+                const lowercase_box = document.querySelector("#lowercase").checked;
+                const uppercase_box = document.querySelector("#uppercase").checked;
+                const symbols_box = document.querySelector("#symbols").checked;
+
+                let password = "";
+                
+                if(numbers_box){
+                    password += getNum();
+                }
+                if(lowercase_box){
+                    password += getLow();
+                }
+                if(uppercase_box){
+                    password += getUp();
+                }
+                if(symbols_box){
+                    password += getSym();
+                }
+
+                for(let i=password.length; i < len; i++){
+                    password += getRand();
+                }
+
+                result.textContent = password;
+            }
+            function getRand(){
+                const numbers_box = document.querySelector("#numbers").checked;
+                const lowercase_box = document.querySelector("#lowercase").checked;
+                const uppercase_box = document.querySelector("#uppercase").checked;
+                const symbols_box = document.querySelector("#symbols").checked;
+
+                const rand = [];
+
+                if(numbers_box){
+                    rand.push(getNum());
+                }
+                if(lowercase_box){
+                    rand.push(getLow());
+                }
+                if(uppercase_box){
+                    rand.push(getUp());
+                }
+                if(symbols_box){
+                    rand.push(getSym());
+                }
+
+                if(rand.length === 0) return "";
+
+                return rand[Math.floor(Math.random()*rand.length)];
+            }
+            function getNum(){
+                const numbers= "0123456789";
+
+                return numbers.charAt(Math.floor(Math.random()*numbers.length));
+            }
+            function getLow(){
+                const lowercase= "qwertyuioplkjhgfdsazxcvbnm";
+
+                return lowercase.charAt(Math.floor(Math.random()*lowercase.length));
+            }
+            function getUp(){
+                const uppercase = "QWERTYUIOPASDFGHJKLZXCVBNM";
+
+                return uppercase.charAt(Math.floor(Math.random()*uppercase.length));
+            }
+            function getSym(){
+                const symbols= "@#$%";
+                return symbols.charAt(Math.floor(Math.random()*symbols.length));
+            }
+            const output = document.querySelector(".output");
+            output.addEventListener('wheel', function(e) {
+
+            if (e.deltaY > 0) this.scrollLeft += 10;
+            else this.scrollLeft -= 10;
+            });
+        </script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Project 3</title>
+
+        <style>
+            *, *:before, *:after{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                height: 100vh;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: rgb(128, 128, 128);
+            }
+
+            .container {
+                width: 600px;
+                height: 400px;
+                background-color: rgba(66, 65, 66, 0.377);
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-around;
+                backdrop-filter: blur(5px);
+                box-shadow: 0 0 15px 1px black;
+            }
+            .butt {
+                height: 100px;
+                margin: 10px;
+                
+            }
+            button {
+                padding: 10px 20px;
+                background-color: rgba(201, 233, 59, 0.527);
+                color: white;
+                font-size: 1.5rem;
+                
+            }
+            .quote_board {
+                font-size: 2rem;
+                height: 300px;
+                width: 100%;
+                color: gray;
+                text-align: justify;
+                text-shadow: 2px 2px 3px black;
+            }
+            .author {
+                text-align: end;
+                font-size: 1.5rem;
+                color: green;
+                padding: 10px;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="butt">
+            <button>Generate Quote</button>
+            </div>
+            <div class="quote_board">
+                <p class="quote"></p>
+                <p class="author"></p>
+            </div>
+        </div>
+        
+
+        <script>
+            
+
+            (function () {
+                const butt = document.querySelector("button"),
+                quote  = document.querySelector(".quote"),
+                author = document.querySelector(".author");
+
+                let quotes = [
+
+                    { quote: "I'm selfish, impatient and a little insecure. I make mistakes, I am out of control and at times hard to handle. But if you can't handle me at my worst, then you sure as hell don't deserve me at my best."
+                    , author : "Marilyn Monroe" 
+                    },
+
+                    { quote: "Two things are infinite: the universe and human stupidity; and I'm not sure about the universe."
+                    , author : "Albert Einstein" 
+                    },
+
+                    { quote: "So many books, so little time."
+                    , author : "Frank Zappa" 
+                    },
+
+                    { quote: "A room without books is like a body without a soul."
+                    , author : "Marcus Tullius Cicero" 
+                    },
+
+                    { quote: "Be who you are and say what you feel, because those who mind don't matter, and those who matter don't mind."
+                    , author : "Bernard M. Baruch" 
+                    },
+
+                    { quote: "Be yourself; everyone else is already taken."
+                    , author : "Oscar Wilde" 
+                    },
+                ]
+
+                butt.addEventListener("click", function () {
+                    let rand = Math.floor(Math.random() * quotes.length);
+
+                    quote.textContent = quotes[rand].quote;
+                    author.textContent = quotes[rand].author;
+
+                });
+            })()
+
+            
+
+        </script>
+    </body>
+</html>

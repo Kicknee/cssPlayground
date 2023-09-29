@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>DOCUMENT</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+        
+         *, *:before, *:after{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+          body {
+            background: black;
+          }
+         main {
+           display: flex;
+           flex-direction: column;
+           font-family: 'Quicksand', sans-serif;
+           width: 100vw;
+           letter-spacing: 3px;
+           padding: 15px;
+           color: rgb(3, 88, 36);
+           font-weight: bold;
+         }
+        
+         h1 {
+           flex: .1;
+           font-size: 3rem;
+         }
+         form {
+          display: flex;
+          height: 50px;
+          align-items: center;
+          gap: 5px;
+         }
+         input {
+           background: rgba(255, 255, 255, 0.493);
+           border: none;
+           font-family: 'Ubuntu Mono', monospace;
+           letter-spacing: 3px;
+           height: 50%;
+           width: 200px;
+           font-size: 1.5rem;
+         }
+         input:focus {
+           outline: none;
+         }
+         .toolbar > button {
+           /* align-self: flex-end; */
+           background: none;
+           outline: none;
+           border: none;
+          /* align-self: stretch; */
+          font-family: 'Quicksand', sans-serif;
+          font-size: 1.3rem;
+          padding: 5px;
+          color: rgb(3, 88, 36);
+          font-weight: 700;
+         }
+
+         .toolbar {
+           display: flex;
+           gap: 5px;
+         }
+         .table {
+           width: 400px;
+          
+         }
+         .table_inf{
+           width: 100%;
+           display: grid;
+           grid-template-columns: 50px repeat(4, 1fr) repeat(2, .2fr);
+           gap: 5px;
+           grid-template-areas: 
+           "no from place to name name name";
+         }
+         .no {
+           grid-area: no;
+          }
+          .place {
+            grid-area: place;
+          }
+          .from {
+            grid-area: from;
+          }
+          .to {
+            grid-area: to;
+          }
+          .name {
+            grid-area: name;
+          }
+          .base {
+            margin-bottom: 10px;
+          }
+          .record > input {
+            width: 100%;
+          }
+          .output {
+            width: 100%;
+            
+          }
+          .record > button {
+            background: none;
+            outline: none;
+            border: none;
+            color: rgb(3, 88, 36);
+          }
+         .record i{
+          pointer-events: none;
+         }
+         .record {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 50px repeat(4, 1fr) repeat(2, .2fr);
+            gap: 5px;
+            align-items: end;
+          }
+    </style>
+</head>
+<body>
+   <main>
+     <h1>Scanner</h1>
+     <form action="">
+        <input class="search" type="text">
+        <div class="toolbar">
+          <button id="check">CHECK</button>
+        <button id="add">ADD</button>
+        <button onclick="loadFromLS(event)">DISPLAY</button>
+        </div>
+        
+     </form>
+     <div class="table">
+       <div class="table_inf">
+        <div class="base no">No.</div>
+        <div class="base from">From</div>
+       <div class="base place">Place</div>
+       <div class="base to">To</div>
+       <div class="base name">Name</div>
+       </div>
+       
+       <div class="output">
+
+         <!-- <div class="record">
+           <div>1.</div>
+           <div>ZD32D</div>
+           <div>Ws</div>
+           <div>C33</div>
+           <div>Pawel</div>
+           <button><i class="fas fa-edit"></i></button>
+           <button><i class="fas fa-trash-alt"></i></button>
+          </div>
+          <div class="record">
+            
+            <div>2.</div>
+            <div>ABD45</div>
+            <div>Ws</div>
+            <div>D53</div>
+            <div>Nico</div>
+            <button><i class="fas fa-edit"></i></button>
+           <button><i class="fas fa-trash-alt"></i></button>
+          </div> -->
+          
+        </div>
+     </div>
+   </main>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const check = document.querySelector("#check");
+        const add = document.querySelector("#add");
+
+        add.addEventListener("click", addStyle);
+        check.addEventListener("click", checkStyle);
+      })
+
+      function checkStyle(){
+
+        let list = null;
+        let results = null;
+        const search = document.querySelector(".search").value;
+        const output = document.querySelector(".output");
+        event.preventDefault();
+        inpDecline(event);
+
+        console.log("loaded");
+        if(localStorage.getItem("list")){
+          list = JSON.parse(localStorage.getItem("list"));
+        }else {
+          alert("no records");
+        } 
+
+        results = list.filter(el => search == el.inpPlace || search ==el.inpFrom || search ==el.inpTo || search ==el.inpName);
+        
+        if(results.length > 0){
+
+          results.forEach((el, indx) => {
+            const record = document.createElement("div");
+            record.classList.add("record");
+            record.setAttribute("data-id", el.id);
+            const inp = `
+            <div>${++indx}.</div>
+            <div>${el.inpFrom}</div>
+            <div>${el.inpPlace}</div>
+            <div>${el.inpTo}</div>
+            <div>${el.inpName}</div>
+            <button onclick='delRecord(event)'><i class="fas fa-trash-alt"></i></button>`; 
+            
+            record.innerHTML = inp;
+            output.appendChild(record);
+          });
+        }else{
+          alert("no recods");
+        }
+          
+
+      }
+      function addStyle(event){
+        event.preventDefault();
+        const inp = "<div>1.</div><input class='inpPlace'></input><input class='inpFrom'></input><input class='inpTo'></input><input class='inpName'></input><button onclick='inpAccept(event)'><i class='fas fa-check'></i></button><button onclick='inpDecline(event)'><i class='fas fa-times'></i></button>";
+
+        const output = document.querySelector(".output");
+
+        while(output.firstChild){
+          output.removeChild(output.firstChild);
+        }
+
+        const record = document.createElement("div");
+        record.classList.add("record");
+        record.innerHTML = inp;
+
+        output.appendChild(record);
+      }
+
+      function inpAccept(event){
+        event.preventDefault();
+        console.log("enter");
+        const inpPlace = document.querySelector(".inpPlace").value;
+        const inpFrom = document.querySelector(".inpFrom").value;
+        const inpTo = document.querySelector(".inpTo").value;
+        const inpName = document.querySelector(".inpName").value;
+        const id = getId();
+
+        if(inpPlace && inpFrom && inpTo && inpName) {
+          let obj = {
+            id,
+            inpPlace,
+            inpFrom,
+            inpTo,
+            inpName
+          }
+
+          saveToLS(obj);
+        }else {
+          console.log("invalid");
+        };
+
+      }
+      function inpDecline(event){
+        event.preventDefault();
+        const parent = document.querySelector(".output");
+
+        while(parent.firstChild){
+          parent.removeChild(parent.firstChild);
+        }
+      }
+
+      function saveToLS(obj){
+        let list = [];
+
+        if(localStorage.getItem("list")){
+          list = JSON.parse(localStorage.getItem("list"));
+        }
+
+        list.push(obj);
+        localStorage.setItem("list", JSON.stringify(list));
+
+        inpDecline(event);
+      }
+
+      function loadFromLS(event){
+        let list = [];
+        event.preventDefault();
+        inpDecline(event);
+
+        console.log("loaded");
+        if(localStorage.getItem("list")){
+          list = JSON.parse(localStorage.getItem("list"));
+        }else {
+          alert("no records");
+        }
+
+        const output = document.querySelector(".output");
+        
+        list.forEach((el, indx) => {
+          const record = document.createElement("div");
+          record.classList.add("record");
+          record.setAttribute("data-id", el.id);
+          const inp = `
+          <div>${++indx}.</div>
+          <div>${el.inpFrom}</div>
+          <div>${el.inpPlace}</div>
+          <div>${el.inpTo}</div>
+          <div>${el.inpName}</div>
+          <button onclick='delRecord(event)'><i class="fas fa-trash-alt"></i></button>`; 
+
+          record.innerHTML = inp;
+          output.appendChild(record);
+        });
+
+        document.querySelector(".search").value = "";
+      }
+      function getId(){
+        let list = [];
+        let id = Math.floor(Math.random()*10000+1);
+        
+        if(localStorage.getItem("list")){
+                list = JSON.parse(localStorage.getItem("list"));
+                while(true){
+                let check = 0;
+                for(let i=0; i<list.length; i++){
+                    if(list[i].id == id){
+                        id = Math.floor(Math.random()*300+1);
+                        check = 0;
+                    } else {
+                        check++;
+                    }
+                }
+                if(check == list.length){
+                    return id;
+                }
+            }
+            
+            } else {
+                return 1;
+            }
+      }
+      function delRecord(event){
+        const record = event.target.parentElement;
+
+        let list = JSON.parse(localStorage.getItem("list"));
+        list = list.filter(el => el.id != record.dataset.id);
+
+        localStorage.setItem("list", JSON.stringify(list));
+        record.remove();
+      }
+    </script>
+</body>
+</html>

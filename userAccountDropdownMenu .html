@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <title>User Account Dropdown Menu</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;800&display=swap');
+        
+         *, *:before, *:after{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body{
+                background-color: rgb(100, 136, 236);
+            }
+
+            .box{
+                width: 200px;
+                height: 400px;
+                position: fixed;
+                top: 15px;
+                right: 15px;
+                font-family: 'Poppins', sans-serif;
+            }
+            .avatar{
+                height: 15%;
+                display: flex;
+                justify-content: flex-end;
+            }
+            .avatar > img{
+                height: 100%;
+                border-radius: 50%;
+            }
+            .menu{
+                height: 80%;
+                border-radius: 15px;
+                background-color: white;
+                padding: 20px 15px 15px;
+                margin-top: 20px;
+                position: relative;
+                opacity: 0;
+                transform: translate(0, 20px);
+                transition: all .5s;
+            }
+            .box.active .menu{
+                opacity: 1;
+                transform: translate(0, 0);
+            }
+            .menu::before{
+                content: "";
+                width: 30px;
+                height: 30px;
+                transform: rotate(45deg);
+                background-color: white;
+                position: absolute;
+                top: -5px;
+                right: 15px;
+                clip-path: inset(0 40% 40% 0);
+            }
+            .userInfo{
+                text-align: center;
+                color: gray;
+            }
+
+            .userInfo > .userName{
+               font-weight: 600;
+            }
+            .userInfo > .position{
+                font-size: .9rem;
+                color: lightgray;
+            }
+
+            .menu > ul{
+                margin-top: 10px;
+                list-style: none;
+            }
+            .menu > ul li{
+                padding: 7px 0;
+                border-top: 1px solid lightgray;
+                font-weight: 600;
+
+            }
+            .menu > ul li *{
+                transition: all .5s linear;
+            }
+           
+            .menu > ul li i{
+                color: lightgray;
+                margin-right: 5px;
+            }
+            .menu > ul li a{
+                color: gray;
+                text-decoration: none;
+            }
+            .menu > ul li:hover i{
+                color: gray;
+            }
+            .menu > ul li:hover a{
+                color: rgb(141, 36, 80);
+            }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="avatar">
+            <img src="/Users/kicknee/Documents/dyskzew/Pictures/86518.png" alt="">
+        </div>
+        <div class="menu">
+            <div class="userInfo">
+                <p class="userName">
+                    Someone Famous
+                </p>
+                <p class="position">
+                    Website Designer
+                </p>
+            </div>
+            <ul>
+                <li><a href="#"><i class="far fa-user-circle"></i> My Profile</a></li>
+                <li><a href="#"><i class="far fa-edit"></i> Edit Profile</a></li>
+                <li><a href="#"><i class="far fa-envelope"></i> Inbox</a></li>
+                <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+                <li><a href="#"><i class="far fa-question-circle"></i> Help</a></li>
+                <li><a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const avatar = document.querySelector(".avatar img");
+        
+        avatar.addEventListener("click", () => {
+            const box = document.querySelector(".box");
+            
+            box.classList.toggle("active");
+        });
+    </script>
+</body>
+</html>

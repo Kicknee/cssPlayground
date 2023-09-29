@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOCUMENT</title>
+
+    <style>
+         *, *:before, *:after{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            body{
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                justify-content:flex-start;
+                align-items: center;
+                background: rgb(138, 135, 135);
+            }
+            section{
+                width: 400px;
+                height: 400px;
+                display: flex;
+                flex-wrap: wrap;
+                outline: 1.5px solid black;
+
+            }
+            .box{
+                width: 40px;
+                height: 40px;
+                border: 1.5px solid black;
+                /* transition: all .5s; */
+            }
+            .snake{
+                background: red;
+            }
+            .apple{
+                background: green;
+            }
+            .score{
+                padding: 2rem;
+                background-color: white;
+                margin: 1rem;
+            }
+            .start{
+                margin: 1rem;
+            }
+    </style>
+</head>
+<body>
+    <div class="score"></div>
+    <button class="start">START</button>
+    <section>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </section>
+
+
+    <script>
+
+        window.addEventListener("DOMContentLoaded", ()=>{
+            const fields = document.querySelectorAll(".box");
+            fields[55].classList.add("snake");
+
+            let direction = -10;
+            let snake = [55, 65, 75];
+            let posApple = null;
+
+            snake.forEach(el => fields[el].classList.add("snake"));
+
+            document.addEventListener("keydown", e => {
+                if(e.code == "ArrowRight" && direction != -1){
+                    direction = 1;
+                }
+                if(e.code == "ArrowLeft" && direction != 1){
+                    direction = -1;
+                }
+                if(e.code == "ArrowUp" && direction != 10){
+                    direction = -10;
+                }
+                if(e.code == "ArrowDown" && direction != -10){
+                    direction = 10;
+                }
+            });
+
+            setInterval(moveSnake, 1000);
+
+            function moveSnake(){
+                if((snake[0] - 10 < 0 && direction === -10) || 
+                    (snake[0] + 10 > 99 && direction === 10) || 
+                    (snake[0] % 10 == 9 && direction === 1) || 
+                    (snake[0] % 10 == 0 && direction === -1) || 
+                    (fields[snake[0] + direction]).classList.contains("snake")){
+                        alert("You Lost");
+                }
+
+                let tail = snake.pop();
+                fields[tail].classList.remove("snake");
+                snake.unshift(snake[0]+direction);
+                fields[snake[0]].classList.add("snake");
+                
+                //apple logic
+                if(fields[snake[0]].classList.contains("apple")){
+                    fields[snake[0]].classList.remove("apple");
+                    snake.push(tail);
+                    fields[tail].classList.add("snake");
+                    addApple();
+                }
+
+            }
+
+            function addApple(){
+                
+
+                do{
+                    posApple = Math.floor(Math.random()*fields.length);
+                }while(snake.includes(posApple));
+                
+                fields[posApple].classList.add("apple");
+            }
+            addApple();
+        });
+        
+    </script>
+</body>
+</html>

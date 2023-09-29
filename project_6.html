@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Project 6</title>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+
+        <style>
+
+            @import url("https://fonts.googleapis.com/css?family=Kaushan+Script");
+
+
+            *, *:before, *:after{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                height: 100vh;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                font-family: "Kaushan Script";
+
+            }
+
+            .toggle {
+                display: none;
+            }
+
+            .header {
+                min-height: 75px;
+                display: flex;
+                align-items: center;
+                padding: 8px 24px;
+                justify-content: space-between;
+                width: 100%;
+            }
+
+            .header > img {
+                height: 50px;
+                width: 50px;
+            }
+            .nav {
+                display: flex;
+                list-style: none;
+                font-size: 1.5rem;
+                
+                
+            }
+            .nav  li {
+                padding: 0 10px;
+                color: rgb(235, 128, 146);    
+            }
+            .rest_nav {
+                display: flex;
+                justify-content: space-between;
+                width: 400px;
+                margin-right: 50px;
+                align-items: center;
+                
+            }
+
+            .cart {
+                border: 2px solid black;
+                padding: 7px 10px;
+                border-radius: 5px;
+            }
+
+            .cart > i {
+                padding-right: 10px;
+            }
+
+            .cart:hover {
+                color: white;
+                background-color: rgb(235, 128, 146);
+            }
+            a {
+                text-decoration: none;
+                color: inherit;
+            }
+
+
+            .head {
+                min-height: calc(100vh - 75px);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                background: linear-gradient(rgba(249, 228, 148, 0.5), rgba(249, 228, 148, 0.5)),
+    url("https://js-beginners.github.io/filter-project/img/headerBcg.jpeg") center/cover fixed no-repeat;
+                color: white;
+                font-size: 1.3rem;
+            }
+
+            .head h1 {
+                font-weight: 300;
+                margin: -50px 0 10px;
+
+            }
+
+            .head span {
+                font-size: 4rem;
+                font-weight: 600;
+                color:rgb(235, 128, 146);
+            }
+
+            .head > button {
+                font-size: 1.5rem;
+                background-color: transparent;
+                padding: 10px;
+                border: 3px solid black;
+                border-radius: 5px;
+                font-family: inherit;
+            }
+            .head > button:hover {
+                background-color: black;
+                color:rgb(235, 128, 146);
+                cursor: pointer;
+            }
+
+            .about {
+                display: flex;
+                justify-content: space-between;
+                width: 80vw;
+                margin: 100px auto;
+                flex-wrap: wrap;
+            }
+
+            .info_l {
+                width: 450px;
+            }
+            .info_l p {
+                margin-bottom: 30px;
+            }
+            .info_l h2, .main h2{
+                font-weight: 300;
+                margin-bottom: 30px;
+                font-size: 3rem;
+            }
+
+            .info_l span, .main span {
+                font-size: 4rem;
+                font-weight: 600;
+                color:rgb(235, 128, 146);
+            }
+
+            .info_r {
+                width: 50%;
+            }
+
+            .info_r img {
+                width: 100%;
+                height: 100%;
+            }
+
+            .border_img {
+                width: 100%;
+                height: 100%;
+            }
+            
+            .about button,
+            .filters li {
+                background-color: transparent;
+                padding: 7px;
+                border: 2px solid black;
+                border-radius: 5px;
+                font-family: inherit;
+            }
+            .about button:hover,
+            .filters li:hover {
+                background-color: black;
+                color: rgb(235, 128, 146);
+                cursor: pointer;
+            }
+            
+            main {
+                background-color: rgb(238, 238, 238);
+            }
+            .main {
+                width: 1000px;
+                margin: 0 auto;
+                padding-top: 30px;
+                margin-bottom: 50px;
+            }
+
+
+            .main > div {
+                text-align: center;
+            }
+
+            .filters {
+                display: flex;
+                list-style: none;
+                justify-content: space-around;
+                margin: 20px 200px;
+            }
+
+            .search {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 10px;
+                
+            }
+
+            .fa-search, .search > input {
+                margin: 0;
+                padding: 10px;
+                background-color: white;
+                border: none;
+                font-size: 1.1rem;
+                
+            }
+
+            .fa-search {
+                background-color: rgb(235, 128, 146);
+                padding: 13px;
+            }
+
+            .search > input {
+                font-family: "Kaushan Script";
+                width: 400px;
+            }
+            
+            
+
+            .tiles {
+                display: grid;
+                /* grid-template-columns: repeat(3, 350px);
+                grid-template-rows: repeat(4, 300px);
+                grid-gap: 20px; */
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                
+            }
+
+            .icon_shop {
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                padding: 10px 15px 15px 10px;
+                background-color: rgb(249, 228, 148);
+                border-top-left-radius: 15px;
+                transform: translate(50px, 50px);
+                transition: all .8s 200ms linear;
+            }
+            .tile img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: bottom;
+                transition: all 1s;
+                
+            }
+
+           
+            .tile img:hover  {
+                transform: scale(1.2);
+                object-position: center;
+            }
+            
+            .top:hover .icon_shop{
+                transform: translate(0, 0);
+                
+            }
+            .tile .top {
+                height: 80%;
+                overflow: hidden;
+                position: relative;
+            }
+            .tile {
+                width: 320px;
+                height: 350px;
+                background-color: white;
+                margin-top: 20px;
+                
+            }
+
+            .tile .bottom {
+                height: 20%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px;
+                font-size: 1.5rem;
+            }
+            .tile h5 {
+                font-weight: 100;
+            }
+
+            .border_img {
+                position: relative;
+            }
+            .border_img::before {
+                position: absolute;
+                content: "";
+                width: 100%;
+                height: 100%;
+                outline: 10px solid rgb(249, 228, 148);;
+                transform: translate(-30px, -30px);
+                z-index: -1;
+                transition: all 1s linear;
+            }
+
+            .border_img:hover::before {
+                transform: translate(0, 0);
+            }
+
+        </style>
+    </head>
+    <body>
+       <div class="header">
+           <a href="#" class="icon"><img src="https://js-beginners.github.io/filter-project/img/logo.svg"></a>
+           <ul class="nav">
+               <a href="#"><li>Home</li></a>
+               <a href="#"><li>About</li></a>
+               <a href="#"><li>Store</li></a>
+           </ul>
+           <div class="rest_nav">
+               <div><i class="fas fa-phone"></i> +123 456 789</div>
+               <a href="#"><div class="cart"><i class="fas fa-shopping-cart"></i> 2 Items - $10.49</div></a>
+           </div>
+           <div class="toggle">
+               <div></div>
+               <div></div>
+               <div></div>
+           </div>
+       </div>
+       <div class="head">
+           <h1>Welcome To <span>Grandma's</span></h1>
+           <button>EXPLORE</button>
+       </div>
+       <div class="about">
+           <div class="info_l">
+               <h2>About <span>Us</span></h2>
+               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, aliquam voluptas beatae vitae expedita consectetur nesciunt quia deserunt asperiores facere fuga dicta fugiat corrupti et omnis porro at dolorum! Ad!</p>
+               <button>EXPLORE</button>
+           </div>
+           <div class="info_r">
+               <div class="border_img"><img src="https://js-beginners.github.io/filter-project/img/sweets-1.jpeg"></div>
+           </div>
+       </div>
+       <main>
+       <div class="main">
+           <div><h1>Our <span>Store</span></h1></div>
+           <ul class="filters">
+               <li data-filter="all">ALL</li>
+               <li data-filter="cake">CAKES</li>
+               <li data-filter="cupcake">CUPCAKES</li>
+               <li data-filter="sweet">SWEETS</li>
+               <li data-filter="dougnut">DOUGHNUTS</li>
+           </ul>
+           <div class="search">
+               <i class="fas fa-search"></i>
+               <input class="search_field" type="text" placeholder="item...">
+           </div>
+
+           <div class="tiles">
+               <div class="tile sweet">
+                   <div class="top"><img src="https://js-beginners.github.io/filter-project/img/sweets-1.jpeg">
+                    <div class="icon_shop"><i class="fas fa-shopping-cart"></i></div>
+                </div>
+                   
+                   <div class="bottom">
+                       <h5 class="item_name">Sweet Item</h5>
+                       <h5 class="item_price">$5</h5>
+                    </div>
+               </div>
+               <div class="tile cupcake">
+                   <div class="top"><img src="https://js-beginners.github.io/filter-project/img/cupcake-1.jpeg">
+                    <div class="icon_shop"><i class="fas fa-shopping-cart"></i></div>
+                </div>
+                   
+                   <div class="bottom">
+                       <h5 class="item_name">Cupcake Item</h5>
+                       <h5 class="item_price">$5</h5>
+                    </div>
+               </div>
+               <div class="tile cake">
+                   <div class="top"><img src="https://js-beginners.github.io/filter-project/img/cake-1.jpeg">
+                    <div class="icon_shop"><i class="fas fa-shopping-cart"></i></div>
+                </div>
+                   
+                   <div class="bottom">
+                       <h5 class="item_name">Cake Item</h5>
+                       <h5 class="item_price">$5</h5>
+                    </div>
+               </div>
+               <div class="tile dougnut">
+                   <div class="top"><img src="https://js-beginners.github.io/filter-project/img/doughnut-1.jpeg">
+                    <div class="icon_shop"><i class="fas fa-shopping-cart"></i></div>
+                </div>
+                   
+                   <div class="bottom">
+                       <h5 class="item_name">Dougnut Item</h5>
+                       <h5 class="item_price">$5</h5>
+                    </div>
+               </div>
+               <div class="tile sweet">
+                   <div class="top"><img src="https://js-beginners.github.io/filter-project/img/sweets-2.jpeg">
+                    <div class="icon_shop"><i class="fas fa-shopping-cart"></i></div>
+                </div>
+                   
+                   <div class="bottom">
+                       <h5 class="item_name">Sweet Item</h5>
+                       <h5 class="item_price">$10</h5>
+                    </div>
+               </div>
+               <div class="tile cupcake">
+                   <div class="top"><img src="https://js-beginners.github.io/filter-project/img/cupcake-2.jpeg">
+                    <div class="icon_shop"><i class="fas fa-shopping-cart"></i></div>
+                </div>
+                   
+                   <div class="bottom">
+                       <h5 class="item_name">Cupcake Item</h5>
+                       <h5 class="item_price">$10</h5>
+                    </div>
+               </div>
+               <div class="tile cake">
+                   <div class="top"><img src="https://js-beginners.github.io/filter-project/img/cake-2.jpeg">
+                    <div class="icon_shop"><i class="fas fa-shopping-cart"></i></div>
+                </div>
+                   
+                   <div class="bottom">
+                       <h5 class="item_name">Cake Item</h5>
+                       <h5 class="item_price">$10</h5>
+                    </div>
+               </div>
+               <div class="tile dougnut">
+                   <div class="top"><img src="https://js-beginners.github.io/filter-project/img/doughnut-2.jpeg">
+                    <div class="icon_shop"><i class="fas fa-shopping-cart"></i></div>
+                </div>
+                   
+                   <div class="bottom">
+                       <h5 class="item_name">Dougnut Item</h5>
+                       <h5 class="item_price">$10</h5>
+                    </div>
+               </div>
+               <div class="tile sweet">
+                   <div class="top"><img src="https://js-beginners.github.io/filter-project/img/sweets-3.jpeg">
+                    <div class="icon_shop"><i class="fas fa-shopping-cart"></i></div>
+                </div>
+                   
+                   <div class="bottom">
+                       <h5 class="item_name">Sweet Item</h5>
+                       <h5 class="item_price">$15</h5>
+                    </div>
+               </div>
+               <div class="tile cupcake">
+                   <div class="top"><img src="https://js-beginners.github.io/filter-project/img/cupcake-3.jpeg">
+                    <div class="icon_shop"><i class="fas fa-shopping-cart"></i></div>
+                </div>
+                   
+                   <div class="bottom">
+                       <h5 class="item_name">Cupcake Item</h5>
+                       <h5 class="item_price">$15</h5>
+                    </div>
+               </div>
+               <div class="tile cake">
+                   <div class="top"><img src="https://js-beginners.github.io/filter-project/img/cake-3.jpeg">
+                    <div class="icon_shop"><i class="fas fa-shopping-cart"></i></div>
+                </div>
+                   
+                   <div class="bottom">
+                       <h5 class="item_name">Cake Item</h5>
+                       <h5 class="item_price">$5</h5>
+                    </div>
+               </div>
+               <div class="tile dougnut">
+                   <div class="top"><img src="https://js-beginners.github.io/filter-project/img/doughnut-3.jpeg">
+                    <div class="icon_shop"><i class="fas fa-shopping-cart"></i></div>
+                </div>
+                   
+                   <div class="bottom">
+                       <h5 class="item_name">Dougnut Item</h5>
+                       <h5 class="item_price">$15</h5>
+                    </div>
+               </div>
+           </div>
+       </div>
+    </main>
+
+        <script>
+            
+            const filters = document.querySelector(".filters").children;
+            const tile = document.querySelectorAll(".tile");
+            const search = document.querySelector(".search_field");
+
+            [...filters].forEach(el => {
+                el.addEventListener("click", (e) => {
+                    const filt = e.target.dataset.filter;
+
+                    //refactoring------------
+                    tile.forEach(el => {
+                        if(filt == "all"){
+                            el.style.display = "block";
+                        } else {
+                            if (el.classList.contains(filt)){
+                                el.style.display = "block";
+                            } else {
+                                el.style.display = "none";
+                            }
+                        }
+                    });
+
+                    //-----------------
+                    // switch(filt){
+                    //     case "ALL":
+                    //         tile.forEach(el => {
+                    //             el.style.display = "block";
+                    //         });
+                    //     break;
+                        
+                    //     case "CAKES":
+                    //         tile.forEach(el => {
+                    //             if(el.classList.contains("cake")){
+                    //                 el.style.display = "block";
+                    //             } else {
+                    //                 el.style.display = "none";
+                    //             }
+                    //         });
+                    //     break;
+
+                    //     case "CUPCAKES":
+                    //         tile.forEach(el => {
+                    //             if(el.classList.contains("cupcake")){
+                    //                 el.style.display = "block";
+                    //             } else {
+                    //                 el.style.display = "none";
+                    //             }
+                    //         });
+                    //     break;
+
+                    //     case "SWEETS":
+                    //         tile.forEach(el => {
+                    //             if(el.classList.contains("sweet")){
+                    //                 el.style.display = "block";
+                    //             } else {
+                    //                 el.style.display = "none";
+                    //             }
+                    //         });
+                    //     break;
+
+                    //     case "DOUGHNUTS":
+                    //         tile.forEach(el => {
+                    //             if(el.classList.contains("dougnut")){
+                    //                 el.style.display = "block";
+                    //             } else {
+                    //                 el.style.display = "none";
+                    //             }
+                    //         });
+                    //     break;
+                    // }
+
+                     
+
+                });
+            });
+
+            search.addEventListener("keyup", () => {
+                const tag = search.value.toLowerCase().trim();
+
+                tile.forEach(el => {
+                    if(el.classList.item(1).includes(tag)){
+                        el.style.display = "block";
+                    } else {
+                        el.style.display = "none";
+                    }
+                });
+                
+            });
+
+        </script>
+    </body>
+</html>

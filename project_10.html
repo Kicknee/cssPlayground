@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOCUMENT</title>
+
+    <style>
+         *, *:before, *:after{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                height: 100vh;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            #container {
+                width: 600px;
+                height: 600px;
+                display: flex;
+                flex-wrap: wrap;
+                align-content: center;
+            }
+
+            .blank {
+                background: linear-gradient(45deg, red 30%, yellow 100%);
+                width: 150px;
+                height: 150px;
+            }
+
+            img {
+                width: 150px;
+                height: 150px;
+                object-fit: cover;
+                object-position: center;
+            }
+    </style>
+</head>
+<body>
+    <div id="container">
+
+    </div>
+    
+
+    <script>
+        let pics = [
+            {
+                imag: "https://dogtowndogtraining.com/wp-content/uploads/2012/06/300x300-061-e1340955308953.jpg"
+            },
+            {
+                imag: "https://i.pinimg.com/originals/26/42/26/26422665b452967ebc301deadb2a036d.jpg"
+            },
+            {
+                imag: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBw8PDw0NDQ0NDw8PEA8QEA8QDg8NFxAYFREWFhUXFRUYHSggGBolHRcTITEhJSkrLi4uGB8zODMtNygtLisBCgoKBQUFDgUFDisZExkrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrK//AABEIAOEA4QMBIgACEQEDEQH/xAAcAAEAAgIDAQAAAAAAAAAAAAAAAQcGCAMEBQL/xABJEAABAwMBBAcDCAYFDQAAAAABAAIDBAUREgYHITETIkFRYXGRCBSBIzJCUpKhscFDYoKis9EkJTOywhUWFzRTY2Ryc3STpPH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AvBQiIJREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREEKQiICIiAiIgIiZQEXw94Ay4gDvJwFwOuVOOdRAD4ys/mg7SLihqGP8AmPY//lcHfguQFBKIiAiIgIiICIiAiIgIiICIiAiKEEoiICIiAiIgIiIOKonbG10kjmsYxpc5zjgNAGSSewKhtt99k73vgtAEMQLm+8vAe9/ixp4NHnlZpv8ALo6C0mFji01UzIjg4y0ddw+OAtaCUHo3C/1tS4uqKyqmJOflJ5HegJwF5xK5KWndK+OKNpc+RzWMaO0uOAPXCyra3YV9up46k1lNUfLOppmRawYZQ3UW5cOtgdvBBjVFcZ4CHQTzQuHEOilfER8WkK3t32+aRhZS3k9JGeDawAam8eAkaB1hz6w49+eapdTlBu1R1cczGSwyMkjeMtexwc1w8CFzrU7YDb6rtErQxzpaRzvlaZxGDn6TCfmuHoe1bP7PXqCvp4qulfrilaCO9p7WuHY4ciEHpIoymUEooUoCIiAihEEqERBKKFKAiIghERBKIiAiIgIiIKc9pL/VLf8A9w/+GVQC2Q9oel12qKX/AGVSw/aa5q1wQclPO6N7JI3Fj2ODmubwLSDkEL0b7tHWV5Ya2pknLM6A48G554A4Z8V5KnCCEXaobfNUODKeGWZ/1Yo3SH7gs2tW6K6zNElQ2GijP0qmQMI/ZCDtbp93cF4bLPU1L2MglDHQRgBzwWhwJceQPEcuxbDWKx01DCKejhbDGOOG/SOObj2nxVTWqxP2SjlustSa6KYNgdBAwRty4gseXucc4w4cvpLv2vbXaC7x9LabfSU8Gos6aeXpeIPHsH4IOXfbtZcLa6i9xmETJhIH9RrjlpGOJ8CsF2eue1V4EjqOrkdHG7Q9/SwQBpIyB9bl3BZJvetFd/kSmmuUsU1VBV5e+JuluiRpAaB4HHFeL7Pt+jp6mup55mRRywtlaZHtjbqjdg8Twzh33IMg2X3dXxtbSVlxuIcyCaOV0XvE02oNdnGOAVzLHKrb20RZD7pRZHY2Zrz+7lezarlDVwx1NNI2WGQEse3k7Di0/eCPgg7aIiAiIgIiICIiAiIgIiICIiAiIgIiIMM3wUPT2S4tHONjJh4dHI15/dDlqit073SialqYSMiSGVhHflhC0tkaQS08CCQfggmKMuIa0EucQABxJJOAArQ/zQtllbTuvwqKurnaHxUNMHNYBnGHyZGTnng/AqvdnqtsFZRzv+bFUQvd5NeCVf8Av8sPvNtbXR5c+icH9XjmOQhrj5DqnyBQcFomv0hjZbLNQ2mka5mem063syOHLhwz9HPFYzb9nzcb/cbTea2tkEQfLA1sxDXDLXN4H9R7SMDsKyHZzebXVFJTQ0VmqqypbCxkkx+SiL2jTq1fDJ4jmsf3o22u6azXGrLKGsqgaSpfTvc5sR1nRgg/Udx4nkePBBxWiKU2ramxyvdK23/LQknOno5NWG+fRjh4nvXW3Q7bVFFBU0VPbqmvc6RssbYuAjyMHWcHGcD0KzPdxb46Y3Wx1NPDHX9E5zp2lzvfInAhsnWJPAnj5rCdyt9p7ZXXCKtnZTxujLS6Q6RqikIx58XcEFiXx9xudnuouVuZRYiElOwS9K4lmXEu7uQ9SqF2KtkNZcaOjqXPbDPJocWEBwy06cE+OFf9w3r2WXNJFPLO6f5AaKeRrcv6oyXgcOKoO12C6MqI3UtFWGWKQOY5tPJjU13AgkY5oNg6Hc9Y4iCaSSYjB+VqJXD4taQD8Qs2oKKKniZBTxMiiYCGRsGlrRnPAeZKoZmz22VcS6aeeBruPytVHAOPZojJcPRZRsXu3raOrgr7hdukMRJ6LXI8OJaRxc8+PcgtlCsM2929jtb4KWKB9XXVGDFTMODgkgOceYBIIHfg9y62wW3FVXVdXb7jQiiqaeNkoZqcS5pPHIPm3zyUGcCZpOA5pPcHAn0SpqGRMfLI4NYxpc5x4BoAySVrvsnIXbYSO76qq/uuVpb6bgYLJWaT1puihH7Ug1fcCgyqy3ylrmOlo6iOeNrtDnMOQHYBwfHBHqvRVb7gqbRZmPxgyzzP9CGj8FZCAiIgIiICIiAiIgIiICIiCCtMtqaQwV9fARjoqqoZ3cpXAfdhbmla27+9nzTXL31rfkq1urVxwJGABw8MjSfVBWOVtZsBc4rvZYmyFr9ULqSoYetghmlwI8QQfitUysj2P2zrbTI6SjkbofjpIZG62SeY5g+IwfNBeO5aqdC242WbV0ltqXhuc9aN7nYPlkZ8iF7m9LZl9ztslPCAaiN7JoMkDrNyMZ7MguCqiXfZcdLpYbfRxk4DpujleCfEgj8V4FbvcvkpOK4RA/Rip4GgeTi0u+9Be8Wyr5qm03WaQ09bRwdFOyMNkE4LcFjndwJcR5qs9odlKCDaOlo5qd00dwldM9z5XN0mRzyWta3HAHHPvWB/6Rb1nP8AlWr+2Pwwstv10llfsdc6iQulc5vSyuw3V0dVHkuxw5FBnl3ipbNdLPBS26gipqtzopJegaZA76OJTxHMLg2q2irGO2pgbUPYKWmpJqYsIYYtRGrBHH/6ubet0Vyow+2TxVFZbpo6oRwuErtIyDwHwPwWMh01dT7WXd9PNBBPRxxRNmaY3OMbQX8O4H8UHb3V7yKgSRUN6e/+kBr6Sql6uvUcBrnciCeAPwX1v8mcyqsp1HR0hJbk4OJGcx2ruU2wsV22ctgbhlXDTaqaXJHWPHQ4j6JIHlzVVbUbQVkrKS3XFrvebdK9nSPPWLSRhru/GBg9owgsmcdPtxCH8oYstHdppXEY+LiVbjbXTtmfViCIVD2aHTaBrc0fRLueFUV3d7vtrQyHgJ4Y+Pfrgkj/ALzVdDzwPkUGqtmdcH3ypktTGvqxNVOaHBrgG6yCTnhyK7+8mp2gEMUd6eBDJJljG9FguaOfV49qyDcbSa73dZz+iZO34yVA4/uldj2kpCZbXEOOWzux46mAfigsXdJTdHZbcMY1RdJ9txd+azBeZsxRCnoaGnH6KmgZ9mMBemgIiICIiAihEEoiICIiAiIgheTtNs9T3KmkpKpmpj+IcMB0buxzT2EL1l8GVva5o+ICDW7anc1cqVxdRtFdB2FhayRo/WYTx/Zz5Kvq+2VFM7TU080J7BJG6PPlkcVue+qiHOWMeb2j81RvtHV0cjrZHHIx+BUOdoc1+OLAM45IOhcP6PsZSs5Gqqs+Y6Rzv8Kq6lt8839jBNL/ANON8n4BWZvKf0Vg2YpeRfD05HLOY2nl+2s33PbQ22ks1KyouFDDM59Q98clREx7czOA1NJyMtDT5EIKat+768T46K2VJB7XtbCPV5ACv6ybvqeW12yku1O2SWkjd1RIeo55y4amnB5D0XrP2/sw53Wi+EzXfgvctlxhqYmz00rJYn50yMOQ7BxwQebs9sjQW50j6GmbC6QBryC4lwByBxK7e0lr98o6qj16PeInxa8Z06hjOO1ekuGpqWRMfJK9rI2NLnvcQA0DmSUGFVNeLBSWS3txUPlqYKIZBYXNc7D3tAPMam8D3+K9u7bHW6snbVVVHFLM0Aa3A5Ibyz348VhOzLnX68G7vYRb7aXRUIcDiWTPGQegP2e0K1UGEbxd37bt7vNFOaarpuEUwBIxqzggceB4gjlkrj2P2XvFNMZLhePe4eiexsGgjrHAa4u8PzWdogwTdrsJLaZK+WaaOV1U8OboDhpGpxwc+JXe2v2Cp7pU0dVUTTt90+bHHoAf1w7rEgnsA4LLkQfLG44dy+kRAREQQpREEIiIJREQEREBERBC0922meLndGa36W11Y0DU7AAnf2LcNagbxotN4uw762od9qQu/NBjpWbbs9nLbc5zSVtTUQTu/sQzow2UYyW5Izq58O1YU1pOAASTyA45XJh8bhwfG9pDhzaWkciO0ILl3801DHFb4PeZPeKWDoYKZjWu6oDRqkd9Hg0eapUr2aC03C6zSOghnq5nHVI/53E9rnngPVdS82epopTT1kD4JQASx+OR5EEcCPEIOits92LWw2S2a3NaDTteS4ho6xJ7fNamBW5btyddUQwSvuMLGSRRva0tlk0BzQ4DGccMoLcv28G1UQd01bE5w/RxETPPwaqxmvVftbUiipWPpLVGQahx5uHPD3Dm7uaOHaV79i3F2+EtfWVE9UR+jGIGHzx1j6hWdbrdDTRtgpoo4Ym/NYxoaB8Ag47Pa4aOCGlpmBkULWsa3ny7Se0ntK7yKEEqAiIClQiCUREBERAREQEREBERAREQEREBak71mab3dB/v8+rGn81tqtUt8TMX25eL4iP/AAsQcu5mWBt5pPeWsLXCRkesAgSFp0Hj28/VX7t5sRTXWmkjdHGypDT0FQGDUx3MAkcS09oWpbHlpDmkggggg4II5EHsK2O3U7zWV7Y6GueGVwGljzgCpwOz9fhy7UGebNWGnt9NFSU0bWtY1oc7ADpHY4vce1xKpT2j54jWUEbcdKyB5fg8Q1zxoB9HK7tobzDQUs1ZUOxHEwuIGMuPY1vieQWou098luFZUVs/z5n5x2NaBhjR4BoAQebDGXOawc3ODR8ThbsUMYZFEwfRjY0fBoC022bh6Stoo/rVMA9ZG5W57R2IClEQEREBMoiAmURAREQEREBERBCIiCUREBERAREQFq1vwZi91X6zIT+4P5LaRUPvf2Culbc5Kuio3TQuiibqbJE3i0HPBzgUFLL7jkLS1zSWlpBBBIII4ggjku/e7FV0MjYq2nkgkc3U1rwOIzjIxzC44bRVPYJY6WpfGc4kbBI5pxzw4DBQevtNtvX3KGlp6uUOZTDDcAtMhxjXJx6zscM+fesbK5Z6WSPHSRyMzy1sczPquLCDJd2sHSXi1s76mM/Z635Lbtaq7mINd+t3aGmd58NNPIR9+FtUgIiICIiAiIgIiIJUKVCCUCIEEKVClARQiCUREBERAUKUQQmFKFBrt7Rh/rGkHdSD+I9Wrufh0WS3j6zHv9XkqpvaKP8AWlOO6jYfWWRXVu7g6O021n/DRH1GUFX+0rJh1rjAHEVL+Q74wvf3G2enlszXT08MpdUT8ZI2v4Agdo8CsT9pGXNXb2fVgkP2nj+SsLcdHpsNEfrvqXf+xI3/AAoMoo9mqCCVtRBRU0UzQ4CSOJrHAEYIyO9eqiIClQiApUIgIpUBARFKAoUogIERAREQEREBERARFCCUUIglERBrd7RB/reId1DD/FlV/bNw6KKjZ9WnhH7gVA+0ENV5ibnnSU48sySLYulZpjjb9VjW+jQg129oabVdIWZ+ZTM+9zire3QQ6LFbG98b3/bmkf8AmqS37y6r1N+rDC390n81fm7yEx2i1sIIIpIMgjBBLATkfFBkKKVCAiKUEKVCICIiCVClQglEUIJQIiAihSgIoRBKIiAiIgIiICIiDgkpY3HU6ONx73Ma4+pXMQpRB0W2imEzqkU8PTvwXS9G0vOOXW5ruhSiAiKEEoiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIghSiIIRSiCEUoghFKICIiAiIgIiIIREQSiIgKERAREQShREEKURBCIiAiIgIiICIiAiIglERBCIiCVCIgIiIJREQf/2Q=="
+            },
+            {
+                imag: "https://www.iso.org/files/live/sites/isoorg/files/news/News_archive/2017/08/Ref2213/Ref2213.jpg/thumbnails/300x300"
+            },
+            {
+                imag: "http://vignette2.wikia.nocookie.net/uncyclopedia/images/f/f8/Stand-out-in-the-crowd-300x300.jpg"
+            },
+            {
+                imag: "https://blogs-images.forbes.com/davidthier/files/2012/01/1350968676_anonymous_xlarge-300x300.gif?"
+            }
+        ];
+            let blank = "https://thumbor.forbes.com/thumbor/300x300/https://blogs-images.forbes.com/panosmourdoukoutas/files/2012/11/300px-Question_mark.jpg?width=960";
+            let tiles = [];
+            
+
+            function create_board(){
+                const container = document.querySelector("#container");
+
+                for(let i=0; i<pics.length; i++){
+                    let imag = pics[i].imag;
+                    let counter = 0;
+
+                    while(counter!=2){
+                       let place = Math.floor(Math.random()*(pics.length*2));
+                            if(!tiles[place]){
+                                tiles[place] = imag;
+                                counter++;
+                            }
+                    }
+                }
+                tiles.forEach((el) => {
+                    let tile = document.createElement("img");
+                    tile.setAttribute("data-id", el);
+                    tile.setAttribute("src", blank);
+                    container.appendChild(tile);
+                    // tile.classList.add("blank");
+                    tile.addEventListener("click", pick);
+
+                });
+                    
+                }
+
+                let chosen_cards = [];
+                let win_cards = [];
+                function pick() {
+                    chosen_cards.push(this);
+                    this.setAttribute("src", this.dataset.id);
+                    this.removeEventListener("click", pick);
+                    if(chosen_cards.length === 2){
+                        
+                        setTimeout(check, 1000);
+                    }
+                }
+
+                function check(){
+                    
+                    if(chosen_cards[0].dataset.id == chosen_cards[1].dataset.id) {
+                        chosen_cards[0].setAttribute("style", "pointer-events: none; visibility: hidden");
+                        chosen_cards[1].setAttribute("style", "pointer-events: none; visibility: hidden");
+                        win_cards.push(...chosen_cards);
+                        chosen_cards = [];
+                    }else {
+                        chosen_cards[0].setAttribute("src", blank);
+                        chosen_cards[0].addEventListener("click", pick);
+                        chosen_cards[1].setAttribute("src", blank);
+                        chosen_cards[1].addEventListener("click", pick);
+
+                        chosen_cards = [];
+                    }
+                    if(win_cards.length == tiles.length){
+                        alert("You win!!");
+                    }
+                }
+
+                // let pic1, pic2;
+                // function check(ev){
+                //     let obj = ev.target;
+                //     obj.setAttribute("src", obj.dataset.id);
+                //     if(!pic1 && !pic2){
+                //         pic1 = obj;
+                //     } 
+                //     else if (pic1 && !pic2){
+                //         pic2 = obj;
+                //     } 
+
+                //     if(pic1 && pic2) {
+                //         // document.addEventListener("click", (e)=>{
+                //         //     e.stopPropagation();
+                //         // }, true);
+                //         [...container.children].forEach(el => el.removeEventListener("click", check));
+                //         pic1.setAttribute("style", "pointer-events: none;");
+                //         pic2.setAttribute("style", "pointer-events: none;");
+                //         if(pic1.dataset.id == pic2.dataset.id){
+                //             console.log("true");
+                //             setTimeout(function() {
+                //                 pic1.setAttribute("style", "visibility: hidden;");
+                //                 pic2.setAttribute("style", "visibility: hidden;");
+                //                 // pic1.style.visibility = "hidden";
+                //                 // pic2.style.visibility = "hidden";
+                                
+                //                 pic1 = null;
+                //                 pic2 = null;
+                //             }, 1000);
+                //     } else {
+                //         setTimeout(function() {
+                //             pic1.setAttribute("src", blank);
+                //             pic2.setAttribute("src", blank);
+                //             pic1 = null;
+                //             pic2 = null;
+                //         }, 1000);
+                //         console.log("false");
+                        
+                //     }
+                //     pic1.setAttribute("style", "pointer-events: all;");
+                //     pic2.setAttribute("style", "pointer-events: all;");
+                //     }
+
+                //     setTimeout(() =>{
+                //         [...container.children].forEach(el => el.addEventListener("click", check));
+                //     }, 1500);
+
+                // }
+                create_board();
+                console.log(tiles);
+            
+            
+    </script>
+</body>
+</html>

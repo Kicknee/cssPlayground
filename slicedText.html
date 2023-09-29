@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOCUMENT</title>
+
+    <style>
+         *, *:before, *:after{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body{
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            div{
+                margin: 0;
+                padding: 0;
+                background-color: red;
+                overflow: hidden;
+                height: 60px;
+            }
+            div:nth-child(1){
+                height: 30px;
+            }
+            div:nth-child(2){
+                height: 30px;
+            }
+            span{
+                font-weight: 900;
+                font-size: 3rem;
+            }
+    </style>
+</head>
+<body>
+    <section>
+        <div><span>TEXT</span></div>
+        <div><span>TEXT</span></div>
+    </section>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOCUMENT</title>
+
+    <style>
+         *, *:before, *:after{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body{
+                height: 100vh;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: rgb(16, 16, 85);
+            }
+            .some{
+                height: 450px;
+                width: 350px;
+                transform: scale(1.1);
+                overflow: hidden;
+            }
+            div{
+                height: 448px;
+                width: 348px;
+                background: rgb(16, 16, 85);
+                border-radius: 20px;
+                font-size: 13rem;
+                font-weight: bolder;
+                font-family: sans-serif;
+                color: white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                user-select: none;
+            }
+            div:before{
+                content: "";
+                position: absolute;
+                z-index: -1;
+                width: 100%;
+                height: 100%;
+                transform: scale(1.1);
+                background-color: black;
+                border-radius: inherit;
+                
+            }
+            div:after{
+                content: "";
+                position: absolute;
+                z-index: -1;
+                width: 200%;
+                height: 10%;
+                transform: scale(1.03);
+                background-color: red;
+                border-radius: inherit;
+                animation: rotate 4s linear infinite;
+            }
+
+            @keyframes rotate {
+                0%{
+                    transform: rotate(0);
+                    filter: hue-rotate(0);
+                }
+                100%{
+                    transform: rotate(360deg);
+                    filter: hue-rotate(360deg);
+                }
+            }
+    </style>
+</head>
+<body>
+    <div class="some">
+        <div>03</div>
+    </div>
+</body>
+</html>

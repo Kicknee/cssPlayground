@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOCUMENT</title>
+
+    <style>
+         *, *:before, *:after{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                background: linear-gradient(10deg, rgba(255, 255, 255, 0.308), rgba(255, 255, 255, 0.507) 100%), url("https://cdn.pixabay.com/photo/2013/10/04/00/07/molehill-190493_1280.jpg") no-repeat fixed center/cover;
+                font-family: sans-serif;
+            }
+            .board {
+                width: 630px;
+                height: 600px;
+                display: flex;
+                flex-wrap: wrap;
+                user-select: none;
+            }
+
+            .box {
+                border: 3px solid black;
+                width: 200px;
+                height: 200px;
+                font-size: 40px;
+                font-weight: 900;
+                background-color: rgba(255, 255, 255, 0.349);
+                backdrop-filter: blur(5px);
+                margin: .5px;
+            }
+
+            .timer,
+            .score {
+                position: absolute;
+                font-size: 50px;
+                font-weight: bold;
+                padding: 10px;
+            }
+
+            .timer {
+                left: 10px;
+                top: 30px;
+            }
+            .score {
+                left: 10px;
+                top: 80px;
+            }
+
+            .mole {
+                background: url("https://cdn.pixabay.com/photo/2012/02/15/14/47/mole-13299_1280.jpg") center/cover;
+                
+            }
+            /* .box div {
+                pointer-events: none;
+                height: 100%;
+                width: 100%;
+                background: url("https://cdn.pixabay.com/photo/2012/02/15/14/47/mole-13299_1280.jpg") center/cover;
+                
+            } */
+            /* .score {
+                font-weight: 900;
+                font-size: 65px;
+                padding: 20px;
+                background-color: rgba(255, 255, 255, 0.349);
+                backdrop-filter: blur(5px);
+            } */
+    </style>
+</head>
+<body>
+    <div class="timer"></div>
+    <div class="score"></div>
+    <div class="board">
+        <div class="box" id="0"></div>
+        <div class="box" id="1"></div>
+        <div class="box" id="2"></div>
+        <div class="box" id="3"></div>
+        <div class="box" id="4"></div>
+        <div class="box" id="5"></div>
+        <div class="box" id="6"></div>
+        <div class="box" id="7"></div>
+        <div class="box" id="8"></div>
+    </div>
+
+
+    <script>
+        const board = document.querySelector(".board"),
+            box = document.querySelectorAll(".box"),
+            clock = document.querySelector(".timer"),
+            points = document.querySelector(".score");
+
+        let score = 0,
+            time = 30;
+        let hitposition;
+        let mole = setInterval(place_mole, 500);
+        let timer = setInterval(counter, 1000);
+
+            function place_mole(){
+                box.forEach(el =>{
+                    el.classList.remove("mole");
+                });
+
+                let place = box[Math.floor(Math.random()*box.length)];
+                place.classList.add("mole");
+
+                hitposition = place.id;
+
+                box.forEach(el => {
+                    el.addEventListener("click", ()=> {
+                        if(el.id === hitposition){
+                            score++;
+                            points.textContent = "Score: " + score;
+                            hitposition = null;
+                            clearInterval(mole);
+                            mole = setInterval(place_mole, 500);
+                            place_mole();
+                            
+                        }
+                    });
+                });
+            }
+            
+            function counter(){
+                time--;
+                clock.textContent = time < 10 ? "Time left: " + 0 + time : "Time left: " + time;
+                if(time == 0){
+                    clearInterval(timer);
+                    clearInterval(mole);
+                    box.forEach(el => {
+                        el.setAttribute("style", "pointer-events: none;");
+                    });
+                    
+                }
+                
+            }
+            
+    //         window.addEventListener("DOMContentLoaded", ()=> {
+    //     const box = document.querySelectorAll(".box");
+    //     const button = document.querySelector("button");
+    //     const timerWindow = document.querySelector(".timer");
+    //     const scoreWindow = document.querySelector(".score");
+
+    //     let timeLeft = 30;
+    //     timer = undefined;
+    //     let score = 0;
+
+    //     let int = undefined;
+
+    //     button.addEventListener("click", start);
+
+    //     box.forEach(el => el.addEventListener("click", check));
+
+
+    //     function start(){
+    //       int = setInterval(placeMole, 500);
+    //       timer = setInterval(time, 1000);
+    //     }
+    //     function check(event){
+    //       let obj = event.target;
+          
+    //       if(obj.classList.contains("mole")){
+    //         score++;
+    //         scoreWindow.textContent = score;
+    //         obj.classList.remove("mole");
+    //         clearInterval(int);
+    //         int = setInterval(placeMole, 500);
+    //       }
+    //     }
+
+    //     function time(){
+    //         timeLeft--;
+    //         timerWindow.textContent = timeLeft;
+    //         if(timeLeft === 0){
+    //           box.forEach(el => el.removeEventListener("click", check));
+    //           clearInterval(int);
+    //           clearInterval(timer);
+    //         }
+            
+    //       }
+
+    //     function placeMole(){
+    //       let position = Math.floor(Math.random()*box.length);
+    //       box.forEach(el => el.classList.remove("mole"));
+    //       box[position].classList.add("mole");
+    //     }
+    //   });
+           
+
+    </script>
+</body>
+</html>

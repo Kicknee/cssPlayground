@@ -1,0 +1,83 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Magic Line Icon Fill Hover</title>
+
+    <style>
+        *, *:before, *:after{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+          body {
+            background: black;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+
+          section {
+              width: 650px;
+              height: 180px;
+              display: flex;
+              justify-content: space-between;
+              text-align: center;
+          }
+          .outer {
+              width: 32%;
+              font-size: 180px;
+              color: rgb(61, 60, 60);
+              position: relative;
+          }
+          .inner {
+              position: absolute;
+              width: 100%;
+              height: 0;
+              transition: all 1s;
+              overflow: hidden;
+          }
+          .twitter {
+              border-bottom: 6px solid #1DA1F2;
+              color: #1DA1F2;
+          }
+          .whatsapp {
+              border-bottom: 6px solid #25D366;
+              color: #25D366;
+          }
+          .youtube {
+              border-bottom: 6px solid #FF0000;
+              color: #FF0000;
+          }
+
+          .outer:hover .inner {
+              height: 100%;
+          }
+    </style>
+</head>
+<body>
+    <section>
+        <div class="outer">
+            <div class="inner twitter">
+                <i class="fab fa-twitter"></i>
+            </div>
+            <i class="fab fa-twitter"></i>
+        </div>
+        <div class="outer">
+            <div class="inner whatsapp">
+                <i class="fab fa-whatsapp"></i>
+            </div>
+            <i class="fab fa-whatsapp"></i>
+        </div>
+        <div class="outer">
+            <div class="inner youtube">
+                <i class="fab fa-youtube"></i>
+            </div>
+            <i class="fab fa-youtube"></i>
+        </div>
+    </section>
+</body>
+</html>

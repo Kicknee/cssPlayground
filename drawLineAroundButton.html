@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Draw Line Around Button on Hover</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      *,
+      *:before,
+      *:after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      button {
+        padding: 15px;
+        font-size: 5rem;
+        background: transparent;
+        outline: none;
+        border: none;
+        position: relative;
+        transition: color;
+        transition-delay: 4s;
+        user-select: none;
+      }
+
+      button > i {
+        position: absolute;
+        font-size: 4rem;
+        top: calc(0px - 4rem);
+        left: 0;
+      }
+
+      button:hover > i {
+        animation: movePen 5s linear;
+        animation-fill-mode: forwards;
+      }
+
+      @keyframes movePen {
+        0% {
+          top: calc(0px - 4rem);
+          left: 0;
+        }
+        20% {
+          top: calc(0px - 4rem);
+          left: 100%;
+        }
+        40% {
+          top: calc(100% - 4rem);
+          left: 100%;
+        }
+        60% {
+          top: calc(100% - 4rem);
+          left: 0;
+        }
+        80% {
+          top: calc(0px - 4rem);
+          left: 0;
+        }
+        100% {
+          top: calc(100% - 4rem);
+          left: 100%;
+        }
+      }
+
+      button div {
+        position: absolute;
+        width: 0;
+        height: 0;
+        background-color: black;
+      }
+      button .top {
+        left: 0;
+        top: 0;
+      }
+      button:hover .top {
+        animation: drawTop 1s linear 0s;
+        animation-fill-mode: forwards;
+        height: 3px;
+      }
+
+      @keyframes drawTop {
+        from {
+          width: 0px;
+        }
+        to {
+          width: 100%;
+        }
+      }
+      button .right {
+        right: 0;
+        top: 0;
+      }
+
+      button:hover .right {
+        animation: drawRight 1s linear 1s;
+        animation-fill-mode: forwards;
+        width: 3px;
+      }
+
+      @keyframes drawRight {
+        from {
+          height: 0px;
+        }
+        to {
+          height: 100%;
+        }
+      }
+
+      button .bottom {
+        right: 0;
+        bottom: 0;
+      }
+      button:hover .bottom {
+        animation: drawBottom 1s linear 2s;
+        animation-fill-mode: forwards;
+        height: 3px;
+      }
+
+      @keyframes drawBottom {
+        from {
+          width: 0px;
+        }
+        to {
+          width: 100%;
+        }
+      }
+
+      button .left {
+        left: 0;
+        bottom: 0;
+      }
+
+      button:hover .left {
+        animation: drawLeft 1s linear 3s;
+        animation-fill-mode: forwards;
+        width: 3px;
+      }
+
+      @keyframes drawLeft {
+        from {
+          height: 0px;
+        }
+        to {
+          height: 100%;
+        }
+      }
+
+      button .backg {
+        left: 0;
+        top: 0;
+      }
+
+      button:hover .backg {
+        animation: drawBackg 1s linear 4s;
+        animation-fill-mode: forwards;
+        z-index: -1;
+      }
+
+      @keyframes drawBackg {
+        from {
+          height: 0px;
+          width: 0px;
+        }
+        to {
+          height: 100%;
+          width: 100%;
+        }
+      }
+
+      button:hover {
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <button>
+      BUTTON
+      <i class="fa-solid fa-pencil" style="color: #000000"></i>
+      <div class="top"></div>
+      <div class="right"></div>
+      <div class="bottom"></div>
+      <div class="left"></div>
+      <div class="backg"></div>
+    </button>
+  </body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Project 4</title>
+
+        <style>
+            *, *:before, *:after{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                height: 100vh;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-image: url("https://github.com/JS-Beginners/counter-project/blob/main/img/mainBcg.jpeg?raw=true");
+                background-repeat: no-repeat;
+                background-size: cover;
+                font-family: sans-serif;
+            }
+
+            .container {
+                width: 600px;
+                height: 400px;
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-around;
+                backdrop-filter: blur(5px);
+                box-shadow: 0 0 15px 1px black;
+                border: 1ps solid white;
+                
+            }
+            .header {
+                font-size: 2.5rem;
+                color: white;
+            }
+
+            .display {
+                font-size: 8rem;
+                color: green;
+            }
+            .butts {
+                width: 100%;
+                display: flex;
+                justify-content: space-around;
+            }
+
+            button {
+                padding: 5px;
+                background-color: navy;
+                color: white;
+                font-size: 1rem;
+            }
+            
+            
+        </style>
+    </head>
+    <body>
+        <div class="container">
+           <div class="header">COUNTER</div>
+           <div class="display"></div>
+           <div class="butts">
+               <button class="lower">LOWER COUNT</button>
+               <button class="add">ADD COUNT</button>
+           </div>
+        </div>
+        
+
+        <script>
+            const display = document.querySelector(".display"),
+                lbutt = document.querySelector(".lower"),
+                rbutt = document.querySelector(".add");
+            let counter = 0;
+
+            display.textContent = counter;
+            check();
+            lbutt.addEventListener("click", () => {
+                display.textContent = --counter;
+                check();
+            });
+            rbutt.addEventListener("click", () => {
+                display.textContent = ++counter;
+                check();
+            });
+
+            function check() {
+                if(counter == 0) display.setAttribute("style", "color: gray;");
+                else if(counter > 0) display.setAttribute("style", "color: green;");
+                else if(counter < 0) display.setAttribute("style", "color: red;");
+            }
+
+
+        </script>
+    </body>
+</html>
