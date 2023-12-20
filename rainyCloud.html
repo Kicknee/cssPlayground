@@ -45,8 +45,9 @@
         box-shadow: 60px 0 0 15px white;
       }
       .rain {
-        position: relative;
+        /* position: relative; */
         display: flex;
+        align-items: flex-start;
         z-index: 1;
         padding: 30px 0 0 23px;
       }
@@ -99,5 +100,22 @@
         <span style="--i: 15"></span>
       </div>
     </div>
+
+    <script>
+      // const rain = document.querySelector(".rain");
+      // const numberOfSnowflakes = Math.floor(rain.offsetWidth / 7);
+      // console.log(numberOfSnowflakes);
+      // for (let i = 0; i < numberOfSnowflakes; i++) {
+      //   const snow = document.createElement("span");
+      //   snow.setAttribute(
+      //     "style",
+      //     "width: 5px; height: 5px; border-radius: 50%; background-color: white; margin-left: 1px;"
+      //   );
+      //   snow.style.animation = `fall ${
+      //     55 / Math.floor(Math.random() * 10 + 10)
+      //   }s linear infinite`;
+      //   rain.appendChild(snow);
+      // }
+    </script>
   </body>
 </html>
